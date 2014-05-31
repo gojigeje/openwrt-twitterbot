@@ -39,6 +39,12 @@ getJam() {
   # getjam=$(date +'%H:%M:%S')
   getjam=$(date +'%H:%M')
 }
+cekonline() {
+  if ! eval "ping -c 1 8.8.4.4 -w 2 > /dev/null 2>&1"; then
+    echo "ERROR: Nggak online!"
+    exit 1
+  fi
+}
 
 post_tweet() {
   if [[ ! -z "$tweet_status" ]]; then
@@ -50,6 +56,7 @@ post_tweet() {
   fi
 }
 
+cekonline
 if [[ -z "$1" ]]; then
   setup
   "$aksi"_main
