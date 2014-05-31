@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Need package coreutils-paste + coreutils-sort (use --force-overwrite)
 
 # aksi_array+=("twit_autoreply")
 touch "temp/autoreply_replied"
@@ -49,8 +51,9 @@ pilih_respon() {
 
 # main method
 twit_autoreply_main() {
-  
-  echo "- curl halaman.."
+
+  getJam
+  echo "- [$getjam] curl halaman.."
   curl -s "https://twitter.com/search?f=realtime&q=%40gojibox&src=typd" > "temp/autoreply.html"
 
   echo "- ambil yang ngetwit.."
