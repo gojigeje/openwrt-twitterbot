@@ -18,7 +18,6 @@ setup() {
      # echo "$f"
   done
 
-  # exit 1
   if [[ -z "$1" ]]; then
     aksi_num=${#aksi_array[*]}
     aksi=${aksi_array[$((RANDOM%aksi_num))]}
@@ -31,8 +30,10 @@ setup() {
     fi
   else
     aksi="$1"
-    rm temp/*.last
-    touch "temp/$aksi.last"
+    if [[ "$aksi_nolog" != "1" ]]; then
+      rm temp/*.last
+      touch "temp/$aksi.last"
+    fi
   fi
 }
 getJam() {
@@ -48,9 +49,9 @@ cekonline() {
 
 post_tweet() {
   if [[ ! -z "$tweet_status" ]]; then
-    getJam
-    echo "[ttytter] : $tweet_status ~ $getjam"
-    # echo "$tweet_status ~ $getjam" | ttytter -status=-
+    # getJam
+    echo "[ttytter] : $tweet_status"
+    # echo "$tweet_status" | ttytter -status=-
   else
     echo "ERROR_STATUS_KOSONG: $aksi"
   fi
