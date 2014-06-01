@@ -3,6 +3,8 @@
 # Need package coreutils-paste + coreutils-sort (use --force-overwrite)
 
 # aksi_array+=("twit_autoreply")
+aksi_nolog="1"
+
 touch "temp/autoreply_replied"
 
 pilih_respon() {
@@ -82,9 +84,9 @@ twit_autoreply_main() {
 
     # cek dulu di database replied
     if grep -q "$twit_id" "temp/autoreply_replied" ; then
-      echo "id $twit_id udah ada di database replied, gak usah direply"
+      echo "-- id $twit_id $twit_user udah ada di database replied, gak usah direply"
     else
-      echo "id $twit_id belum ada di database replied, reply lalu masukin"
+      echo "-- id $twit_id $twit_user belum ada di database replied, reply lalu masukin"
 
       pilih_respon
       getJam
