@@ -7,7 +7,7 @@ twit_cuaca_main() {
   mkdir -p "temp"
 
   if [[ ! -f "temp/cuaca_hariini_$tanggal$bulan$tahun.xml" ]]; then
-    rm "temp/cuaca_*"
+    rm temp/cuaca_*
     wget "http://data.bmkg.go.id/propinsi_16_1.xml" -O "temp/cuaca_hariini_$tanggal$bulan$tahun.xml" -q
     # format
     tr -d '\n\r' < "temp/cuaca_hariini_$tanggal$bulan$tahun.xml" > "temp/cuaca_hariini"
