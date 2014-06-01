@@ -78,7 +78,7 @@ twit_ejek_main() {
   ejekan_array=(
       "ada gejala maho"
       "banyak makannya"
-      "belum gosok gigi"
+      "ga pernah gosok gigi"
       "bulu keteknya panjang"
       "ga pernah mandi"
       "kalo beol selalu lupa disiram"
@@ -89,7 +89,7 @@ twit_ejek_main() {
       "kentutnya super bau"
       "lagi bokek, udah 3 hari cuma makan mie instan"
       "maho sejati #terbukti"
-      "maho"
+      "super maho"
       "menganggap dirinya superhero"
       "obatnya mau habis"
       "spesies langka, hampir punah.. tolong dijaga"
@@ -98,11 +98,12 @@ twit_ejek_main() {
       "suka lama-lama di kamar mandi"
       "suka lirak-lirik cewek"
       "suka menggigit"
-      "suka ngamuk kalo marah"
+      "suka ngamuk-ngamuk kalo lagi marah"
       "suka ngupil"
       "udah 3 hari ga mandi"
       "udelnya bodong"
       "upilnya banyak"
+      "kalo tidur ngileran"
     )
   ejekan_num=${#ejekan_array[*]}
   ejekan=${ejekan_array[$((RANDOM%ejekan_num))]}  
