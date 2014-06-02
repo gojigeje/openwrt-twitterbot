@@ -55,7 +55,7 @@ twit_github_main() {
       getJam
       status=$(echo "$line" | cut -d ' ' -f2-)
       echo "   [ttytter] : $status"
-      # ttytter -status="$status"
+      ttytter -status="$status"
 
       # masukin git_id ke database
       echo "$git_id" >> "temp/github_posted"
