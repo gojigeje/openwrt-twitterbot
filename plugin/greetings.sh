@@ -106,6 +106,6 @@ greeting_hari_jumat()
 twit_greeting_main() {
   greeting_cek
   greeting_hari_jumat
-
-  tweet_status="$greet"
+  getJam
+  tweet_status="$greet - $getjam"
 }
