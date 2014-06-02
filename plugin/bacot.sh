@@ -118,7 +118,7 @@ twit_bacot_main() {
       "Orang pintar, minum tolak angin. Orang jenius, ke Klinik Tong Fang!"
       "Kalo cewek bilang, 'semua cowok tuh brengsek!'. Pertanyaannya, Berjenis kelamin apakah Bapa mereka?"
       "#KeselAdalah ketika kita lagi download sesuatu, dan ketika udah sampe ████████████ 99%... gagal download!"
-      "Aang: Dulu saya sering masuk angin. Tetapi semenjak kenal dengan klinik Tong Fang, saya jadi pengendali ingin. Terimakasih Tong Fang!"
+      "Aang: Dulu saya sering masuk angin. Tetapi semenjak kenal dengan klinik Tong Fang, saya jadi pengendali angin. Terimakasih Tong Fang!"
       "gue: mah, ada brita bgus! | mamah: apa? apa? kmu dpet ranking 1 dikelas? | gue: mah, aku bilang brita bagus, bukan keajaiban -__-"
       "Dengan memakan Make Up, apakah seorang cewek akan cantik dari dalam?"
       "artis itu lucu. mereka bekerja keras agar menjadi terkenal. setelah terkenal, mereka pakai kacamata hitam agar gak dikenal."
