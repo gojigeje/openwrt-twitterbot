@@ -49,9 +49,9 @@ cekonline() {
 
 post_tweet() {
   if [[ ! -z "$tweet_status" ]]; then
-    # getJam
-    echo "[ttytter] : $tweet_status"
-    # echo "$tweet_status" | ttytter -status=-
+    getJam
+    echo "[ttytter][$getjam] : $tweet_status"
+    echo "$tweet_status" | ttytter -status=-
   else
     echo "ERROR_STATUS_KOSONG: $aksi"
   fi
