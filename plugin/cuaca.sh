@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# aksi_array+=("twit_uptime")
+# aksi_array+=("twit_cuaca")
 
 # main method
 twit_cuaca_main() {
