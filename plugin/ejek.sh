@@ -35,6 +35,9 @@ twit_ejek_main() {
       "@aftaonline"
       "@BimaFikry"
       "@blu3f4lc0n"
+      "@dan_guna"
+      "@didikz"
+      "@dimperm"
       "@ekosuhartono_"
       "@Galih_Gundul"
       "@gojigeje"
@@ -51,6 +54,8 @@ twit_ejek_main() {
       "@ulinzulfa"
       "@yudhasatyaap"
       "@yunushadi"
+      "@AgungTarecha"
+      
     )
   twit_ejek_pilihtarget
 
