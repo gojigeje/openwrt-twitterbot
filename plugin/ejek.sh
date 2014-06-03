@@ -33,6 +33,7 @@ twit_ejek_main() {
   target_array=(
       "@afandie5"
       "@aftaonline"
+      "@AgungTarecha"
       "@BimaFikry"
       "@blu3f4lc0n"
       "@dan_guna"
@@ -43,6 +44,7 @@ twit_ejek_main() {
       "@gojigeje"
       "@mang_panga"
       "@Marsha_Say"
+      "@mfthl"
       "@muvidm"
       "@MuzanRizqy"
       "@pogal_666"
@@ -54,8 +56,6 @@ twit_ejek_main() {
       "@ulinzulfa"
       "@yudhasatyaap"
       "@yunushadi"
-      "@AgungTarecha"
-      
     )
   twit_ejek_pilihtarget
 
