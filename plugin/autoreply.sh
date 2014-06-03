@@ -10,10 +10,10 @@ touch "temp/autoreply_replied"
 pilih_respon() {
   respon_array=(
       "Ada yang bisa aku bantu {target}? tapi kalo masalah asmara sori aku gabisa bantu, tanya @gojigeje aja"
-      "aku cuma bercanda kok {target}"
+      "aku cuma bercanda kok {target}.. ga usah dimasukin ati"
       "Apasih {target}?? mention2 terus.. ga ada kerjaan lain apa?"
       "asem si {target} kalo kentut jangan sembarangan oi..!!"
-      "baru ketemu ama si {target}.. ternyata orangnya agak gimanaa gitu.."
+      "baru ketemu ama si {target}.. ternyata orangnya gimanaa gitu.. agak mengkhawatirkan.."
       "bentar aku tanya.. kamu udah mandi ta emangnya {target}??"
       "Dilanjut nanti yaa {target}.. gapapa sih kalo situ maksa lanjut, berarti situ ngefans aku"
       "fans terbaru aku nih --> {target} . orangnya suka ngupil sayangnya"
