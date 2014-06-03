@@ -9,13 +9,30 @@ twit_imsakiyah_main() {
     echo "mlg|tag ?"
     exit 1
   else
-    if [[ "$1" = "mlg" ]]; then
-      kota="Malang"
-      url="http://www.jadwalsholat.org/adzan/monthly.php?id=141"
-    fi
-    if [[ "$1" = "tag" ]]; then
-      kota="Tulungagung"
-      url="http://www.jadwalsholat.org/adzan/monthly.php?id=295"
+    if [[ "$2" == "ramadhan" ]]; then
+      if [[ "$1" = "mlg" ]]; then
+        kota="Malang"
+        key="malang"
+        url="http://www.rukyatulhilal.org/imsakiyah/index.php?id=210"
+      fi
+      if [[ "$1" = "tag" ]]; then
+        kota="Tulungagung"
+        key="tulungagung"
+        url="http://www.rukyatulhilal.org/imsakiyah/index.php?id=466"
+      fi
+      prefix="imsakiyah"
+    else
+      if [[ "$1" = "mlg" ]]; then
+        kota="Malang"
+        key="mlg"
+        url="http://www.jadwalsholat.org/adzan/monthly.php?id=141"
+      fi
+      if [[ "$1" = "tag" ]]; then
+        kota="Tulungagung"
+        key="tag"
+        url="http://www.jadwalsholat.org/adzan/monthly.php?id=295"
+      fi
+      prefix="jadwal-sholat"
     fi
   fi
 
@@ -36,15 +53,16 @@ twit_imsakiyah_main() {
   ayosholat_num=${#ayosholat_array[*]}
   ayosholat=${ayosholat_array[$((RANDOM%ayosholat_num))]}
 
-  tgl=$(date +%d%m); tgl2=$(date +%d/%b); 
-  jadwal=$(cat "plugin/imsakiyah.sh" | grep "$1" | grep $tgl | sed 's/# '$tgl' '$1' //')
+  tgl=$(date +%d%m);
+  tgl2=$(date +%d/%b); 
+  jadwal=$(cat "plugin/imsakiyah.sh" | grep "$key" | grep $tgl | sed 's/# '$tgl' '$key' //')
 
   # set tweet_status
-  status="[jadwal-sholat] Kota $kota hari ini [$tgl2]: $jadwal"
+  status="[$prefix] Kota $kota hari ini [$tgl2]: $jadwal"
   echo "[ttytter] : $status"
   ttytter -status="$status"
   sleep 5
-  status2="[jadwal-sholat] Kota $kota diambil dari $url ~ $ayosholat"
+  status2="[$prefix] Kota $kota diambil dari $url ~ $ayosholat"
   echo "[ttytter] : $status2"
   ttytter -status="$status2"
 
@@ -55,9 +73,6 @@ twit_imsakiyah_main() {
 # JADWAL SHOLAT (Juni - Desember) 2014 KOTA MALANG
 # Sumber: http://www.jadwalsholat.org/adzan/monthly.php?id=141
 # ------------------------------------------------------------------------------------------
-# TGL  KOTA SUBUH        TERBIT         DZUHUR         ASHAR         MAGHRIN         ISYA    
-# ------------------------------------------------------------------------------------------
-
 # 0106 mlg Subuh 04:15 ~ Terbit 05:34 ~ Dzuhur 11:29 ~ Ashar 14:50 ~ Maghrib 17:19 ~ Isya' 18:34
 # 0206 mlg Subuh 04:15 ~ Terbit 05:34 ~ Dzuhur 11:29 ~ Ashar 14:50 ~ Maghrib 17:19 ~ Isya' 18:34
 # 0306 mlg Subuh 04:15 ~ Terbit 05:34 ~ Dzuhur 11:29 ~ Ashar 14:50 ~ Maghrib 17:20 ~ Isya' 18:34
@@ -283,9 +298,6 @@ twit_imsakiyah_main() {
 # JADWAL SHOLAT (Juni - Desember) 2014 KOTA TULUNGAGUNG
 # Sumber: http://www.jadwalsholat.org/adzan/monthly.php?id=295
 # ------------------------------------------------------------------------------------------
-# TGL  KOTA SUBUH        TERBIT         DZUHUR         ASHAR         MAGHRIN         ISYA    
-# ------------------------------------------------------------------------------------------
-
 # 0106 tag Subuh 04:19 ~ Terbit 05:37 ~ Dzuhur 11:32 ~ Ashar 14:53 ~ Maghrib 17:23 ~ Isya' 18:37
 # 0206 tag Subuh 04:19 ~ Terbit 05:38 ~ Dzuhur 11:32 ~ Ashar 14:53 ~ Maghrib 17:23 ~ Isya' 18:37
 # 0306 tag Subuh 04:19 ~ Terbit 05:38 ~ Dzuhur 11:32 ~ Ashar 14:53 ~ Maghrib 17:23 ~ Isya' 18:37
@@ -506,3 +518,71 @@ twit_imsakiyah_main() {
 # 2912 tag Subuh 03:52 ~ Terbit 05:14 ~ Dzuhur 11:36 ~ Ashar 15:03 ~ Maghrib 17:54 ~ Isya' 19:10
 # 3012 tag Subuh 03:53 ~ Terbit 05:15 ~ Dzuhur 11:36 ~ Ashar 15:03 ~ Maghrib 17:54 ~ Isya' 19:11
 # 3112 tag Subuh 03:53 ~ Terbit 05:15 ~ Dzuhur 11:37 ~ Ashar 15:04 ~ Maghrib 17:55 ~ Isya' 19:11
+
+
+# Imsakiyah Ramadhan 2014 / 1435 H ~ Kota Malang
+# Sumber: http://www.rukyatulhilal.org/imsakiyah/index.php?id=210
+# --------------------------------------------------------------------------------
+# 2906 malang Imsak 04:11 ~ Subuh 04:21 ~ Dzuhur 11:35 ~ Ashar 14:56 ~ Maghrib 17:25 ~ Isya' 18:40
+# 3006 malang Imsak 04:12 ~ Subuh 04:22 ~ Dzuhur 11:35 ~ Ashar 14:56 ~ Maghrib 17:25 ~ Isya' 18:40
+# 0107 malang Imsak 04:12 ~ Subuh 04:22 ~ Dzuhur 11:35 ~ Ashar 14:56 ~ Maghrib 17:25 ~ Isya' 18:40
+# 0207 malang Imsak 04:12 ~ Subuh 04:22 ~ Dzuhur 11:36 ~ Ashar 14:56 ~ Maghrib 17:26 ~ Isya' 18:41
+# 0307 malang Imsak 04:12 ~ Subuh 04:22 ~ Dzuhur 11:36 ~ Ashar 14:56 ~ Maghrib 17:26 ~ Isya' 18:41
+# 0407 malang Imsak 04:12 ~ Subuh 04:22 ~ Dzuhur 11:36 ~ Ashar 14:57 ~ Maghrib 17:26 ~ Isya' 18:41
+# 0507 malang Imsak 04:12 ~ Subuh 04:22 ~ Dzuhur 11:36 ~ Ashar 14:57 ~ Maghrib 17:26 ~ Isya' 18:41
+# 0607 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:36 ~ Ashar 14:57 ~ Maghrib 17:27 ~ Isya' 18:41
+# 0707 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:36 ~ Ashar 14:57 ~ Maghrib 17:27 ~ Isya' 18:41
+# 0807 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:37 ~ Ashar 14:57 ~ Maghrib 17:27 ~ Isya' 18:42
+# 0907 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:37 ~ Ashar 14:58 ~ Maghrib 17:27 ~ Isya' 18:42
+# 1007 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:37 ~ Ashar 14:58 ~ Maghrib 17:27 ~ Isya' 18:42
+# 1107 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:37 ~ Ashar 14:58 ~ Maghrib 17:28 ~ Isya' 18:42
+# 1207 malang Imsak 04:13 ~ Subuh 04:23 ~ Dzuhur 11:37 ~ Ashar 14:58 ~ Maghrib 17:28 ~ Isya' 18:42
+# 1307 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:37 ~ Ashar 14:58 ~ Maghrib 17:28 ~ Isya' 18:42
+# 1407 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:37 ~ Ashar 14:58 ~ Maghrib 17:28 ~ Isya' 18:42
+# 1507 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 1607 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 1707 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 1807 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 1907 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 2007 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 2107 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:43
+# 2207 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:43
+# 2307 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:43
+# 2407 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:43
+# 2507 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:43
+# 2607 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:43
+# 2707 malang Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:30 ~ Isya' 18:44
+
+
+# Imsakiyah Ramadhan 2014 / 1435 H ~ Kota Tulungagung
+# Sumber: http://www.rukyatulhilal.org/imsakiyah/index.php?id=466
+# --------------------------------------------------------------------------------
+# 2906 tulungagung Imsak 04:14 ~ Subuh 04:24 ~ Dzuhur 11:38 ~ Ashar 14:58 ~ Maghrib 17:28 ~ Isya' 18:43
+# 3006 tulungagung Imsak 04:15 ~ Subuh 04:25 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:28 ~ Isya' 18:43
+# 0107 tulungagung Imsak 04:15 ~ Subuh 04:25 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:28 ~ Isya' 18:43
+# 0207 tulungagung Imsak 04:15 ~ Subuh 04:25 ~ Dzuhur 11:38 ~ Ashar 14:59 ~ Maghrib 17:28 ~ Isya' 18:43
+# 0307 tulungagung Imsak 04:15 ~ Subuh 04:25 ~ Dzuhur 11:39 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:43
+# 0407 tulungagung Imsak 04:15 ~ Subuh 04:25 ~ Dzuhur 11:39 ~ Ashar 14:59 ~ Maghrib 17:29 ~ Isya' 18:44
+# 0507 tulungagung Imsak 04:15 ~ Subuh 04:25 ~ Dzuhur 11:39 ~ Ashar 15:00 ~ Maghrib 17:29 ~ Isya' 18:44
+# 0607 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:39 ~ Ashar 15:00 ~ Maghrib 17:29 ~ Isya' 18:44
+# 0707 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:39 ~ Ashar 15:00 ~ Maghrib 17:30 ~ Isya' 18:44
+# 0807 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:39 ~ Ashar 15:00 ~ Maghrib 17:30 ~ Isya' 18:44
+# 0907 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:40 ~ Ashar 15:00 ~ Maghrib 17:30 ~ Isya' 18:45
+# 1007 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:40 ~ Ashar 15:01 ~ Maghrib 17:30 ~ Isya' 18:45
+# 1107 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:40 ~ Ashar 15:01 ~ Maghrib 17:30 ~ Isya' 18:45
+# 1207 tulungagung Imsak 04:16 ~ Subuh 04:26 ~ Dzuhur 11:40 ~ Ashar 15:01 ~ Maghrib 17:31 ~ Isya' 18:45
+# 1307 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:40 ~ Ashar 15:01 ~ Maghrib 17:31 ~ Isya' 18:45
+# 1407 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:40 ~ Ashar 15:01 ~ Maghrib 17:31 ~ Isya' 18:45
+# 1507 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:40 ~ Ashar 15:01 ~ Maghrib 17:31 ~ Isya' 18:45
+# 1607 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:40 ~ Ashar 15:02 ~ Maghrib 17:31 ~ Isya' 18:45
+# 1707 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:32 ~ Isya' 18:46
+# 1807 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:32 ~ Isya' 18:46
+# 1907 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:32 ~ Isya' 18:46
+# 2007 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:32 ~ Isya' 18:46
+# 2107 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:32 ~ Isya' 18:46
+# 2207 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:33 ~ Isya' 18:46
+# 2307 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:33 ~ Isya' 18:46
+# 2407 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:33 ~ Isya' 18:46
+# 2507 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:33 ~ Isya' 18:46
+# 2607 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:33 ~ Isya' 18:46
+# 2707 tulungagung Imsak 04:17 ~ Subuh 04:27 ~ Dzuhur 11:41 ~ Ashar 15:02 ~ Maghrib 17:33 ~ Isya' 18:46
