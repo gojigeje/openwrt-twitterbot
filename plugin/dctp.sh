@@ -22,7 +22,6 @@ twit_dctp_main() {
   link=$(grep "sendspace.com" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | head -n1 | cut -d '"' -f2 )
   view=$(grep "[0-9]-Reader" "$DCTPFILE" | grep "www.dctp.ws" | sed "s/^ *.//g" | head -n1 | cut -d '"' -f2)
 
-
   # cek entri di config
   entri="plugin_dctp_last"
   if [[ "$plugin_dctp_last" = "" ]]; then
