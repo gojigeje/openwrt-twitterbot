@@ -80,6 +80,10 @@ twit_dctp_main() {
       let num++;
       # echo "isinya nggak sama, replace"
       sed -i 's/'$entri'*.*/'$entri'="'$num'"/g' "plugin/plugin.conf"
+    else
+      if [[ "$chapter" == "$plugin_dctp_last" ]]; then
+        echo "Chapter udah paling baru [$chapter].. dan udah di twit 3x.. gak ngetwit.."
+      fi
     fi
 
   fi
