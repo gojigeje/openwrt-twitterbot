@@ -44,7 +44,16 @@ twit_cuaca_main() {
     besok_anginkec=$(grep -i "$1" "temp/cuaca_besok" | sed -e 's,.*<KecepatanAngin>\([^<]*\)</KecepatanAngin>.*,\1,g' | head -n 1)
     besok_anginarah=$(grep -i "$1" "temp/cuaca_besok" | sed -e 's,.*<ArahAngin>\([^<]*\)</ArahAngin>.*,\1,g' | head -n 1)
 
-    tweet_status="[BMKG] Cuaca $1 hari ini: $hariini_cuaca ~ $hariini_suhumin-$hariini_suhumax ºC ~ angin $hariini_anginkec km/h ke $hariini_anginarah // kalo besok: $besok_cuaca"
+    if [[ "$hariini_cuaca" == "-" || "$hariini_suhumin" == "-" || "$hariini_suhumax" == "-" || "$hariini_anginkec" == "-" || "$hariini_anginarah" == "-" ]]; then
+      echo "data tidak lengkap, exit"
+      rm temp/cuaca_*
+      exit 1
+    else
+      tweet_status="[BMKG] Cuaca $1 hari ini: $hariini_cuaca ~ $hariini_suhumin-$hariini_suhumax ºC ~ angin $hariini_anginkec km/h ke $hariini_anginarah // kalo besok: $besok_cuaca"
+    fi
+  else
+    echo "parameter kurang: Kota"
+    exit 1
   fi
 
   # cek entri di plugin
