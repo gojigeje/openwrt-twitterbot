@@ -12,7 +12,7 @@ plihtarget() {
       "@Ampyunk"
       "@BimaFikry"
       "@blu3f4lc0n"
-      "@ekosuhartono_"
+      "@EKOSUHARTONOcom"
       "@Galih_Gundul"
       "@gojigeje"
       "@mang_panga"
