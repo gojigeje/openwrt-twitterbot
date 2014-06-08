@@ -18,8 +18,14 @@ twit_dctp_main() {
     exit 1
   fi
 
-  chapter=$(grep "File [0-9]" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | sed "s/[a-z A-Z]//g" | head -n1 | tr -d '\n\r')
-  link=$(grep "sendspace.com" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | head -n1 | cut -d '"' -f2 )
+  chapter=$(grep "File [0-9]" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | sed 's/[^0-9]*//g' | head -n1 | tr -d '\n\r')
+  grep "File [0-9]" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | sed 's/[^0-9]*//g' > "temp/dctp_chapter"
+  grep "File [0-9]" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | sed 's/[^0-9]*//g' | uniq
+
+  link=$(grep "sendspace.com" "$DCTPFILE" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | head -n1 | cut -d '"' -f2)
+  # grep oke 14 link
+  grep "sendspace.com" "$DCTPFILE" | grep -i "direct" | sed "s/[ \t]*//$g;s/<[^>]\+>/ /g;s/ <span//g" | cut -d '"' -f2 > "temp/dctp_link"
+
   view=$(grep "[0-9]-Reader" "$DCTPFILE" | grep "www.dctp.ws" | sed "s/^ *.//g" | head -n1 | cut -d '"' -f2)
 
   # cek entri di config
