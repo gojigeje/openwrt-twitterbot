@@ -54,6 +54,8 @@ twit_ejek_main() {
       "@TegarSwasono"
       "@aftaonline"
       "@putrinawa"
+      "@kartoli"
+      "@febridm"
     )
   twit_ejek_pilihtarget
 
