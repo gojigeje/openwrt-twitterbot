@@ -56,6 +56,7 @@ twit_ejek_main() {
       "@putrinawa"
       "@kartoli"
       "@febridm"
+      "@gig_ih"
     )
   twit_ejek_pilihtarget
 
