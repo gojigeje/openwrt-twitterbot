@@ -27,3 +27,19 @@ cekposting() {
     fi
   fi
 }
+
+if [[ ! -z "$1" ]]; then
+  if [[ "$1" = "cron" ]]; then
+    echo "[cekposting-cron]"
+    echo -n "[cekposting-cron] - Cek failed record.. "
+    fail=$(cat /root/script/twit/temp/*_output | grep FAILED | wc -l)
+    echo "$fail found.."
+
+    if [[ "$fail" -gt 0 ]]; then
+      echo -n "[cekposting-cron] - reloading crontab.. "
+      /etc/init.d/cron reload
+      rm /root/script/twit/temp/*_output
+      echo "done"
+    fi
+  fi
+fi
