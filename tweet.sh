@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------
 
 # change directory to script's directory
-# cd /root/script/twit
+cd /root/script/twit
 
 setup() {
   hari=$(date +%u)
@@ -52,6 +52,7 @@ post_tweet() {
     getJam
     echo "[ttytter][$getjam] : $tweet_status"
     echo "$tweet_status" | ttytter -status=-
+    cekposting
   else
     echo "ERROR_STATUS_KOSONG: $aksi"
   fi
