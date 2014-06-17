@@ -75,7 +75,6 @@ twit_gombal_main() {
       "@ulinzulfa"
       "@AnandaRPD"
       "@jessy_zy"
-      "@chen9_"
       "@Marsha_Say"
     )
   twit_gombal_pilihtarget
