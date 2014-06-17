@@ -61,10 +61,10 @@ twit_imsakiyah_main() {
   status="[$prefix] Kota $kota hari ini [$tgl2]: $jadwal"
   echo "[ttytter] : $status"
   ttytter -status="$status"
-  sleep 5
-  status2="[$prefix] Kota $kota diambil dari $url ~ $ayosholat"
-  echo "[ttytter] : $status2"
-  ttytter -status="$status2"
+  #sleep 5
+  #status2="[$prefix] Kota $kota diambil dari $url ~ $ayosholat"
+  #echo "[ttytter] : $status2"
+  #ttytter -status="$status2"
 
   echo "- done -"
   exit 1
