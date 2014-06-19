@@ -2,7 +2,8 @@
 # -------------------------------------------------------------------------
 
 # change directory to script's directory
-cd /root/script/twit
+# cd /root/script/twit
+cd /home/goji/git/openwrt-twitterbot
 
 setup() {
   hari=$(date +%u)
