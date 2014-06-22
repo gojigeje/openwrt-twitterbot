@@ -1,9 +1,6 @@
 #!/bin/bash
-
-# !say
-# !follow
-# !unfollow !leave
-
+# make me sandwich
+# vuln check
 # !stop
 # !gombalin
 # !ejekin
@@ -35,6 +32,8 @@ reply_command() {
   comm_tipeisi="$(echo "$@" | cut -d " " -f 3-)"
   comm_isi="$(echo "$@" | cut -d " " -f 4-)"
 
+  echo "$comm_user ~ $comm_tipe ~ $comm_tipeisi ~ $comm_isi"
+
   if [[ "$comm_tipe" == "!say" ]]; then
     do_say
   fi
@@ -47,8 +46,12 @@ reply_command() {
     do_unfollow
   fi
 
+  if [[ "$comm_tipe" == "!status" ]]; then
+    do_status
+  fi
+
   # quick fix, ntar dibenahin lagi
-  if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* ]]; then
+  if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* && "$comm_tipeisi" != *"!status"* ]]; then
     respon="1"
   fi
 
@@ -100,4 +103,29 @@ do_unfollow() {
     dont="1"
     echo "[ttytter] : $comm_user nyuruh2 !unfollow"
   fi
+}
+
+do_status() {
+  echo "[ttytter] : $comm_user nanyain status kita"
+
+  statusnya_array=(
+      "merana karena jomblo"
+      "jomblo"
+      "di-PHP-in"
+      "bokek"
+      "jomblo abadi"
+      "ngejomblo"
+      "jomblo 3 bulan"
+      "galau akut"
+      "digantung"
+      "galau"
+      "bokek akut"
+      "menggalau"
+      "susah BAB"
+    )
+  statusnya_num=${#statusnya_array[*]}
+  statusnya=${statusnya_array[$((RANDOM%statusnya_num))]}
+
+  bilang "hai $comm_user, status aku saat ini itu lagi $statusnya kayak majikan aku si @gojigeje ..T_T"
+  respon="0"
 }
