@@ -22,7 +22,6 @@ bilang() {
   ttytter -status="$@"
 }
 
-
 reply_command() {
 
   cekngadimin
@@ -57,6 +56,7 @@ reply_command() {
 
 }
 
+# ======================================================================================
 do_say() {
   if [[ "$respon" == "0" ]]; then
     echo "[ttytter] : $comm_user nyuruh kita bilang $comm_isi"
