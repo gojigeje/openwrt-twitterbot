@@ -31,33 +31,7 @@ twit_ejek_pilihtarget() {
 
 # main method
 twit_ejek_main() {
-  target_array=(
-      "@mfthl"
-      "@yudhasatyaap"
-      "@afandie5"
-      "@Ressaniaa"
-      "@mang_panga"
-      "@pogal_666"
-      "@yunushadi"
-      "@MuzanRizqy"
-      "@AgungTarecha"
-      "@Marsha_Say"
-      "@blu3f4lc0n"
-      "@Ampyunk"
-      "@gojigeje"
-      "@BimaFikry"
-      "@EKOSUHARTONOcom"
-      "@ulinzulfa"
-      "@muvidm"
-      "@rikza7x"
-      "@RezaTedjoe"
-      "@TegarSwasono"
-      "@aftaonline"
-      "@putrinawa"
-      "@kartoli"
-      "@febridm"
-      "@gig_ih"
-    )
+  
   twit_ejek_pilihtarget
 
   peringatan_array=(
