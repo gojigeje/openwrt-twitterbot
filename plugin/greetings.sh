@@ -5,31 +5,6 @@ aksi_array+=("twit_greeting")
 # greeting
 # ----------------------------------------------------------------------------------
 plihtarget() {
-  target_array=(
-      "@afandie5"
-      "@aftaonline"
-      "@AgungTarecha"
-      "@Ampyunk"
-      "@BimaFikry"
-      "@blu3f4lc0n"
-      "@EKOSUHARTONOcom"
-      "@Galih_Gundul"
-      "@gojigeje"
-      "@mang_panga"
-      "@Marsha_Say"
-      "@mfthl"
-      "@muvidm"
-      "@MuzanRizqy"
-      "@pogal_666"
-      "@putrinawa"
-      "@Ressaniaa"
-      "@RezaTedjoe"
-      "@rikza7x"
-      "@TegarSwasono"
-      "@ulinzulfa"
-      "@yudhasatyaap"
-      "@yunushadi"
-    )
 
   target_num=${#target_array[*]}
   target=${target_array[$((RANDOM%target_num))]}
