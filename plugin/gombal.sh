@@ -3,7 +3,7 @@
 aksi_array+=("twit_gombal")
 
 twit_gombal_pilihtarget() {
-  target_num=${#target_array[*]}
+  target_num=${#target_gmbalan_array[*]}
   target_num_max=$(( target_num - 1 ))
 
   # cek entri di config
@@ -26,7 +26,7 @@ twit_gombal_pilihtarget() {
 
   fi
 
-  target=${target_array[$urutan]}
+  target=${target_gmbalan_array[$urutan]}
 }
 
 twit_gombal_pilihgombalan() {
@@ -58,12 +58,13 @@ twit_gombal_pilihgombalan() {
 
 # main method
 twit_gombal_main() {
-  target_array=(
+  target_gmbalan_array=(
       "@sarri__"
       "@hanazawaqurin"
       "@d34ff4"
       "@Zheezayn"
       "@RomsZhu"
+      "@Diflarizqiya"
       "@putrinawa"
       "@Chindy_horor"
       "@AllyciaAP"
@@ -76,6 +77,7 @@ twit_gombal_main() {
       "@AnandaRPD"
       "@jessy_zy"
       "@Marsha_Say"
+      "@Diflarizqiya"
     )
   twit_gombal_pilihtarget
 
