@@ -11,6 +11,7 @@ setup() {
   bulan=$(date +%m)
   tahun=$(date +%Y)
   jam=$(date +%H)
+  menit=$(date +%M)
   aksi_array=()
 
   # load plugin
@@ -66,7 +67,7 @@ if [[ -z "$1" ]]; then
   post_tweet
 
   # once more when action is greeting
-  if [[ $aksi = "twit_greeting" ]]; then
+  if [[ $aksi = "twit_greeting" || $aksi = "twit_ramadhan_greet" ]]; then
     setup
     "$aksi"_main
     post_tweet  
