@@ -44,7 +44,7 @@ twit_cuaca_main() {
     besok_anginkec=$(grep -i "$1" "temp/cuaca_besok" | sed -e 's,.*<KecepatanAngin>\([^<]*\)</KecepatanAngin>.*,\1,g' | head -n 1)
     besok_anginarah=$(grep -i "$1" "temp/cuaca_besok" | sed -e 's,.*<ArahAngin>\([^<]*\)</ArahAngin>.*,\1,g' | head -n 1)
 
-    if [[ "$hariini_cuaca" == "-" || "$hariini_suhumin" == "-" || "$hariini_suhumax" == "-" || "$hariini_anginkec" == "-" || "$hariini_anginarah" == "-" ]]; then
+    if [[ "$hariini_cuaca" == "-" || "$hariini_suhumin" == "-" || "$hariini_suhumax" == "-" || "$hariini_anginkec" == "-" || "$hariini_anginarah" == "-" || -z "$hariini_cuaca" || -z "$hariini_suhumin" || -z "$hariini_suhumax" || -z "$hariini_anginkec" || -z "$hariini_anginarah" ]]; then
       echo "data tidak lengkap, exit"
       rm temp/cuaca_*
       exit 1
