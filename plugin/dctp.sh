@@ -70,18 +70,24 @@ twit_dctp_main() {
       fi
     fi
 
-    if [[ $num -lt 3 ]]; then
+    if [[ $num -lt 2 ]]; then
       # getJam
-      status="[DCTP] Update! Det.Conan chapter $chapter udah rilis..! ~ Download: $link ~ Baca: $view ~ cc @gojigeje"
-      echo "[ttytter] : $status"
-      ttytter -status="$status" -newline
 
-      let num++;
-      # echo "isinya nggak sama, replace"
-      sed -i 's/'$entri'*.*/'$entri'="'$num'"/g' "plugin/plugin.conf"
+      if [[ -z "$chapter" || -z "$link" || -z "$view" ]]; then
+        echo "data tidak lengkap, exit!"
+        exit 1
+      else
+        status="[DCTP] Update! Det.Conan chapter $chapter udah rilis..! ~ Download: $link ~ Baca: $view ~ cc @gojigeje"
+        echo "[ttytter] : $status"
+        ttytter -status="$status" -newline
+
+        let num++;
+        # echo "isinya nggak sama, replace"
+        sed -i 's/'$entri'*.*/'$entri'="'$num'"/g' "plugin/plugin.conf"
+      fi
     else
       if [[ "$chapter" == "$plugin_dctp_last" ]]; then
-        echo "Chapter udah paling baru [$chapter].. dan udah di twit 3x.. gak ngetwit.."
+        echo "Chapter udah paling baru [$chapter].. dan udah di twit 2x.. gak ngetwit.."
       fi
     fi
 
