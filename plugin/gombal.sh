@@ -70,6 +70,7 @@ twit_gombal_main() {
       "@AllyciaAP"
       "@ristina55"
       "@putrinawa"
+      "@puu_sita"
       "@Ressaniaa"
       "@cipluxx"
       "@AnindaRPD"
