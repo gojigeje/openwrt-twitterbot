@@ -53,8 +53,8 @@ twit_kissanime_main() {
       if [[ "$line" == *"Tokyo Ghoul"* ]]; then
         status="[kissanime] Eps. baru Anime Tokyo Ghoul dah rilis..! ~ Download di http://kissanime.com/G/5726?l=http%3a%2f%2fkissanime.com%2fAnime%2fTokyo-Ghoul ~ cc. @gojigeje"
       fi
-      if [[ "$line" == *"DRAMAtical Murder"* ]]; then
-        status="[kissanime] Eps. baru Anime DRAMAtical Murder dah rilis..! ~ Download di http://kissanime.com/G/5726?l=http%3a%2f%2fkissanime.com%2fAnime%2fDRAMAtical-Murder ~ cc. @gojigeje"
+      if [[ "$line" == *"Zankyou no Terror"* ]]; then
+        status="[kissanime] Eps. baru Anime Zankyou no Terror dah rilis..! ~ Download di http://kissanime.com/G/5726?l=http%3a%2f%2fkissanime.com%2fAnime%2fZankyou-no-Terror ~ cc. @gojigeje"
       fi
 
       # completed
