@@ -12,7 +12,7 @@ twit_github_main() {
 
   getJam
   echo "- [$getjam] curl feed.."
-  curl -s "https://github.com/gojigeje.atom" > "temp/github.xml"
+  curl --cacert "$certificate" -A "$ua" -s "https://github.com/gojigeje.atom" > "temp/github.xml"
 
   # id
   echo "id.."
@@ -54,8 +54,9 @@ twit_github_main() {
 
       getJam
       status=$(echo "$line" | cut -d ' ' -f2-)
-      echo "   [ttytter] : $status"
-      ttytter -status="$status"
+      echo "   [twit] : $status"
+      twit -s "$status"
+      # ttytter -status="$status"
 
       # masukin git_id ke database
       echo "$git_id" >> "temp/github_posted"

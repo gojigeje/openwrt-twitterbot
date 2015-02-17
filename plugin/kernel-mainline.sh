@@ -10,7 +10,7 @@ twit_kernel_main() {
   echo -n "[$getjam] Updating kernel list.."
   if eval "ping -c 1 kernel.ubuntu.com -w 10 > /dev/null"; then
     date +"%d %b" > $LISTFILE
-    curl -s http://kernel.ubuntu.com/~kernel-ppa/mainline/ | sed 's/<[^>]\+>/ /g' | sed "s/[ \t]*//$g" | grep "v[0-9]" | cut -d " " -f1 | tr / " " >> $LISTFILE
+    curl --cacert "$certificate" -A "$ua" -s http://kernel.ubuntu.com/~kernel-ppa/mainline/ | sed 's/<[^>]\+>/ /g' | sed "s/[ \t]*//$g" | grep "v[0-9]" | cut -d " " -f1 | tr / " " >> $LISTFILE
     echo " [OK]"
   else
     echo " [ERROR]"
@@ -38,8 +38,8 @@ twit_kernel_main() {
   if [[ "$STABLE" != "$plugin_kernel_stable" ]]; then
     # getJam
     status="[kernel-watch] UPDATE Kernel Ubuntu terbaru! (stable) $STABLE ~ donlot dimari --> http://kernel.ubuntu.com/~kernel-ppa/mainline/$STABLE cc @gojigeje"
-    echo "[ttytter] : $status"
-    ttytter -status="$status"
+    echo "[twit] : $status"
+    twit -s "$status"
 
     # echo "isinya nggak sama, replace"
     sed -i 's/'$entri'*.*/'$entri'="'$STABLE'"/g' "plugin/plugin.conf"
@@ -73,8 +73,8 @@ twit_kernel_main() {
     if [[ $num -lt 3 ]]; then
       getJam
       status="[kernel-watch] UPDATE Kernel Ubuntu terbaru! (stable) $STABLE ~ donlot dimari --> http://kernel.ubuntu.com/~kernel-ppa/mainline/$num cc @gojigeje ~ $getjam"
-      echo "[ttytter] : $status"
-      ttytter -status="$status"
+      echo "[twit] : $status"
+      twit -s "$status"
 
       let num++;
       # echo "isinya nggak sama, replace"
@@ -86,3 +86,4 @@ twit_kernel_main() {
   echo "- done -"
   exit 1
 }
+

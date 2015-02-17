@@ -230,3 +230,4 @@ twit_bacot_main() {
   pilih_bacotan
   tweet_status="$bacotan"
 }
+

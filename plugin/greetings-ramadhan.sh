@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aksi_array+=("twit_ramadhan_greet")
+#aksi_array+=("twit_ramadhan_greet")
 
 # greeting
 # ----------------------------------------------------------------------------------
@@ -203,6 +203,7 @@ twit_ramadhan_greet_main() {
   plihtarget_ramadhan
   greeting_cek_ramadhan
   greeting_hari_jumat_ramadhan
-  getJam
-  tweet_status="$greet - $getjam"
+  #getJam
+  tweet_status="$greet"
 }
+

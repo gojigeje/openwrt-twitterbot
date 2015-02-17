@@ -1,6 +1,5 @@
 #!/bin/bash
-# make me sandwich
-# vuln check
+
 # !stop
 # !gombalin
 # !ejekin
@@ -19,8 +18,10 @@ cekngadimin() {
 
 bilang() {
   # echo "[bilang]: $@"
-  ttytter -status="$@"
+  twit -s "$@"
+  # ttytter -status="$@"
 }
+
 
 reply_command() {
 
@@ -31,9 +32,7 @@ reply_command() {
   comm_tipeisi="$(echo "$@" | cut -d " " -f 3-)"
   comm_isi="$(echo "$@" | cut -d " " -f 4-)"
 
-  echo "$comm_user ~ $comm_tipe ~ $comm_tipeisi ~ $comm_isi"
-
-  if [[ "$comm_tipe" == "!say" ]]; then
+  if [[ "$comm_tipe" == "!say" || "$comm_tipe" == "!bilang" ]]; then
     do_say
   fi
 
@@ -50,20 +49,19 @@ reply_command() {
   fi
 
   # quick fix, ntar dibenahin lagi
-  if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* && "$comm_tipeisi" != *"!status"* ]]; then
+  if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!bilang"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* && "$comm_tipeisi" != *"!status"* ]]; then
     respon="1"
   fi
 
 }
 
-# ======================================================================================
 do_say() {
   if [[ "$respon" == "0" ]]; then
-    echo "[ttytter] : $comm_user nyuruh kita bilang $comm_isi"
+    echo "[twit] : $comm_user nyuruh kita bilang $comm_isi"
     bilang "$comm_isi"
   else
     dont="1"
-    # echo "[ttytter] : $comm_user nyuruh2 !say"
+    # echo "[twit] : $comm_user nyuruh2 !say"
   fi
 }
 
@@ -82,7 +80,7 @@ do_follow() {
 
   else
     dont="1"
-    # echo "[ttytter] : $comm_user nyuruh2 !follow"
+    # echo "[twit] : $comm_user nyuruh2 !follow"
   fi
 }
 
@@ -101,12 +99,12 @@ do_unfollow() {
 
   else
     dont="1"
-    echo "[ttytter] : $comm_user nyuruh2 !unfollow"
+    echo "[twit] : $comm_user nyuruh2 !unfollow"
   fi
 }
 
 do_status() {
-  echo "[ttytter] : $comm_user nanyain status kita"
+  echo "[twit] : $comm_user nanyain status kita"
 
   statusnya_array=(
       "merana karena jomblo"
@@ -121,7 +119,7 @@ do_status() {
       "galau"
       "bokek akut"
       "menggalau"
-      "susah BAB"
+      "susah BAB akhir2 ini"
     )
   statusnya_num=${#statusnya_array[*]}
   statusnya=${statusnya_array[$((RANDOM%statusnya_num))]}
@@ -129,3 +127,4 @@ do_status() {
   bilang "hai $comm_user, status aku saat ini itu lagi $statusnya kayak majikan aku si @gojigeje ..T_T"
   respon="0"
 }
+

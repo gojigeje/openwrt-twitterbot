@@ -36,16 +36,16 @@ greeting_cek()
 {
   case "$jam" in
     01)
-       greet="Sudah malam.. ingin tidur.. tapi ga bisa.. ane kan router -__-"
+       greet="Sudah malam.. ngantuk pengen tidur.. tapi ga bisa.. ane kan router -__-"
     ;;
     02)
-       greet="$target kalo tidur jangan suka ngorok..! ntar hidungmu tambah gede..!"
+       greet="$target kalo tidur itu jangan ngorok..! ntar hidungmu tambah gede..!"
     ;;
     03)
-       greet="pusing liat $target sejak tadi pecicilan aja di atas kasur.. tidur apa pencak silat??"
+       greet="pusing liat $target sejak tadi pecicilan aja di atas kasur.. tidur apa pencak silat sih??"
     ;;
     04)
-       greet="Udah sholat subuh apa belom bos, opo masih mlungker? cc $target"
+       greet="Udah sholat subuh apa belom bos, apa masih mlungker? cc $target"
     ;;
     05)
        greet="$target <-- tumben banget pagi-pagi gini dah bangun ni orang?"
@@ -63,13 +63,13 @@ greeting_cek()
        greet="Ayo kerja kerjaaa..!!! (Semangat Mode ON) #membara cc $target"
     ;;
     10)
-       greet="Masak jam segini udah laper lagi sih bos..??! cc $target"
+       greet="Masak jam segini udah laper lagi sih bos..??! tadi yang 3 piring lari ke mana?? cc $target"
     ;;
     11)
-       greet="Jam segini kok bawaannya udah ngantuk ya? semangat woy $target..!"
+       greet="Jam segini kok bawaannya udah ngantuk aja? semangat woy $target..!"
     ;;
     12)
-       greet="Sholat Dzuhur.. terus Tiduuuurrr.. :D #tukangtidur cc $target"
+       greet="Sholat Dzuhur.. terus Tiduuuurrr.. :D #tukangtidur --> $target"
     ;;
     13)
        greet="Sudah sholat Dzuhur bos $target?.. Kok jadi ngantuk gini ya.. :("
@@ -120,10 +120,10 @@ greeting_hari_jumat()
                greet="Ayo siap-siap sholat Jumat dulu bos.. cc @gojigeje"
             ;;
             12 )
-               greet="Habis Jumatan gini enaknya ya tidur :D"
+               greet="Habis Jumatan pasti langsung tidur, kayak orang ini --> $target"
             ;;
             13 )
-               greet="Jumat siang, buat tidur mantap nih :D"
+               greet="Jumat siang, buat tidur mantap nih,, lha itu si $target udah ngorok aja tuh.."
             ;;
          esac
       ;;
@@ -136,5 +136,7 @@ twit_greeting_main() {
   greeting_cek
   greeting_hari_jumat
   getJam
-  tweet_status="$greet - $getjam"
+  # tweet_status="$greet - $getjam"
+  tweet_status="$greet"
 }
+

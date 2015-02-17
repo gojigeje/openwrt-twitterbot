@@ -8,7 +8,7 @@ twit_cuaca_main() {
 
   if [[ ! -f "temp/cuaca_hariini_$tanggal$bulan$tahun.xml" ]]; then
     rm temp/cuaca_*
-    wget "http://data.bmkg.go.id/propinsi_16_1.xml" -O "temp/cuaca_hariini_$tanggal$bulan$tahun.xml" -q
+    curl --cacert "$certificate" -A "$ua" "http://data.bmkg.go.id/propinsi_16_1.xml" -so "temp/cuaca_hariini_$tanggal$bulan$tahun.xml"
     # format
     tr -d '\n\r' < "temp/cuaca_hariini_$tanggal$bulan$tahun.xml" > "temp/cuaca_hariini"
     sed -i 's/<Mulai>/\n&/g;s/<MulaiPukul>/\n&/g;s/<Sampai>/\n&/g;s/<SampaiPukul>/\n&/g;s/<\/Tanggal>/\n&/g;s/<Row>/\n&/g;s/<Peringatan>/\n&/g;' "temp/cuaca_hariini"
@@ -20,8 +20,7 @@ twit_cuaca_main() {
   fi
 
   if [[ ! -f "temp/cuaca_besok_$tanggal$bulan$tahun.xml" ]]; then
-    wget "http://data.bmkg.go.id/propinsi_16_2.xml" -O "temp/cuaca_besok_$tanggal$bulan$tahun.xml" -q
-
+    curl --cacert "$certificate" -A "$ua" "http://data.bmkg.go.id/propinsi_16_2.xml" -so "temp/cuaca_besok_$tanggal$bulan$tahun.xml"
     tr -d '\n\r' < "temp/cuaca_besok_$tanggal$bulan$tahun.xml" > "temp/cuaca_besok"
     sed -i 's/<Mulai>/\n&/g;s/<MulaiPukul>/\n&/g;s/<Sampai>/\n&/g;s/<SampaiPukul>/\n&/g;s/<\/Tanggal>/\n&/g;s/<Row>/\n&/g;s/<Peringatan>/\n&/g;' "temp/cuaca_besok"
   else
@@ -75,3 +74,4 @@ twit_cuaca_main() {
   fi
   
 }
+

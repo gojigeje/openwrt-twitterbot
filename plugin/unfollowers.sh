@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# aksi_array+=("twit_unfollowers")
+aksi_array+=("twit_unfollowers")
 
 # main method
 twit_unfollowers_main() {
