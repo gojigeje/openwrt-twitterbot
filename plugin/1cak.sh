@@ -6,7 +6,6 @@ wancak_random() {
   # ambil random link
   link=$(curl --cacert "\"$certificate\"" -Is "http://1cak.com/shuffle" | grep Location | cut -d " " -f2)
   url="http://1cak.com$link"
-  imgname=$(echo "$link" | tr -d '\r' | sed 's/\///')
   urlproksi=$(echo "http://proksi.ml/1cak.com$link" | tr -d '\r')
 
   wancak_tweet "$urlproksi"
@@ -75,7 +74,7 @@ wancak_tweet() { # params: urlproksi
 
   if [[ $unsafe -gt 0 ]]; then
     echo "unsafe?     : $unsafe. Gambar unsafe, ga jadi posting.."
-    twit -s "le gue mau posting gambar dari 1cak, tapi ternyata gambarnya unsafe,, ga jadi deh.."
+    twit -s "le gue mau posting meme dari 1cak, tapi ternyata gambarnya NSFW,, ga jadi deh.."
   else
     echo "unsafe?     : $unsafe. Gambar safe, lanjut posting.."
     imgurl="http:/$img"
@@ -87,6 +86,7 @@ wancak_tweet() { # params: urlproksi
     echo "judul       : $judul"
 
     # download image
+    imgname=$(echo "$url" | grep -o '[^\/]*$' | tr -d '\r')  # http://stackoverflow.com/a/22727242
     echo "dl image    : $imgurlproksi > temp/1cak.$imgname.jpg"
     curl -s "$imgurlproksi" -o "temp/1cak.$imgname.jpg"
 
