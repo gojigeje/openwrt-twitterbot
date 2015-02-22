@@ -1,9 +1,15 @@
 #!/bin/bash
 # -------------------------------------------------------------------------
 
-# cd to script's directory
+# siap-siap
+CURL_CA_BUNDLE=/root/cacert.pem
+certificate="/root/cacert.pem"
+ua="Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36"
+
+# change directory to script's directory
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd "$DIR"
+#rm temp/*_output
 
 setup() {
   hari=$(date +%u)
@@ -50,11 +56,14 @@ cekonline() {
 }
 
 post_tweet() {
+  # persiapan:
+  # sebelumnya script twit.py sudah di link ke /usr/bin/twit , chmod +x
   if [[ ! -z "$tweet_status" ]]; then
     getJam
-    echo "[ttytter][$getjam] : $tweet_status"
-    echo "$tweet_status" | ttytter -status=-
-    cekposting
+    echo "[twit][$getjam] : $tweet_status"
+    twit -s "$tweet_status"
+    # echo "$tweet_status" | ttytter -status=-
+    #cekposting
   else
     echo "ERROR_STATUS_KOSONG: $aksi"
   fi
