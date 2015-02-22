@@ -1,4 +1,12 @@
 #!/bin/bash
+#
+# nama plugin : ejek
+# deksripsi   : ejek {target} dengan sekejam-kejamnya :D
+# 
+# cara pakai  : twit_ejek
+#
+# keterangan  : file tempat menuliskan target ada di target.sh
+#
 
 aksi_array+=("twit_ejek")
 

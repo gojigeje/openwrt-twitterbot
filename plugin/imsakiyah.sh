@@ -1,4 +1,20 @@
 #!/bin/bash
+#
+# nama plugin : imsakiyah
+# deksripsi   : twit jadwal sholat
+# 
+# cara pakai  : twit_imsakiyah [mlg|tag]
+#
+# keterangan  : dicontohkan kota malang dan tulungagung (mlg|tag)
+#               data jadwal sholat diambil dari jadwalsholat.org
+#               data imsakiyah ramadhan diambil dari rukyatulhilal.org
+#               
+#               data diambil dan ditulis ulang secara manual mengikuti pola
+#               yang sudah ditentukan:
+#               
+#               # 1231 mlg [jadwal sholat yang ditampilkan]
+#               # mm:dd kota [jadwal sholat yang ditampilkan]
+#
 
 # aksi_array+=("twit_imsakiyah")
 

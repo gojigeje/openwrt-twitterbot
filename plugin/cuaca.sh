@@ -1,4 +1,17 @@
 #!/bin/bash
+#
+# nama plugin : cuaca
+# deksripsi   : ambil data cuaca dari BMKG (data.bmkg.go.id) lalu posting ke twitter
+# 
+# cara pakai  : twit_cuaca "nama kota"
+#
+# keterangan  : di website data.bmkg.go.id ada beberapa file dumping data cuaca
+#               dengan nama propinsi_xx_1.xml yang berakhiran _1.xml adaah cuaca hari ini,
+#               sedang yang berakhiran _2.xml adalah cuaca besok hari.
+#               
+#               di plugin ini dicontohkan propinsi_16_, silahkan disesuaikan dengan file
+#               kota kamu (cari satu per satu)
+#
 
 # aksi_array+=("twit_cuaca")
 

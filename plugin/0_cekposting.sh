@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# plugin disabled, mungkin akan dihapus nanti
+
 # aksi_array+=("twit_cekposting")
 
 cekposting() {

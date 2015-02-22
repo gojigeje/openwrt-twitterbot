@@ -1,4 +1,12 @@
 #!/bin/bash
+#
+# nama plugin : greetings
+# deksripsi   : twit sapaan ke $target secara acak
+# 
+# cara pakai  : twit_greeting
+#
+# keterangan  : file tempat menuliskan target ada di target.sh
+#
 
 aksi_array+=("twit_greeting")
 

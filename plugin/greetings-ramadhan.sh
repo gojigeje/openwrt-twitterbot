@@ -1,4 +1,12 @@
 #!/bin/bash
+#
+# nama plugin : greetings_ramadhan
+# deksripsi   : twit sapaan ke $target acak, tema ramadhan
+# 
+# cara pakai  : twit_ramadhan_greet
+#
+# keterangan  : file tempat menuliskan target ada di target.sh
+#
 
 #aksi_array+=("twit_ramadhan_greet")
 

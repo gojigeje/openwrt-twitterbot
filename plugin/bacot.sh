@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# nama plugin : bacot
+# deksripsi   : ngebacot twit random
+# 
+# cara pakai  : twit_bacot
+#
 
 aksi_array+=("twit_bacot")
 

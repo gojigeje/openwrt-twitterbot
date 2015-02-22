@@ -1,6 +1,11 @@
 #!/bin/bash
 #
-# Need package coreutils-paste + coreutils-sort (use --force-overwrite)
+# nama plugin : github
+# deksripsi   : posting aktifitas github terbaru @gojigeje ke twitter
+# 
+# cara pakai  : twit_github
+#
+# keterangan  : kayaknya harus install dulu paket coreutils-paste + coreutils-sort (use --force-overwrite)
 
 # aksi_array+=("twit_github")
 aksi_nolog="1"

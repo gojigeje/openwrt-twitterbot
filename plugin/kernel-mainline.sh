@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+# nama plugin : kernel-mainline
+# deksripsi   : posting kernel mainline ubuntu versi terbaru (stable) ke twitter
+# 
+# cara pakai  : twit_kernel
+#
+# keterangan  : data diambil dari http://kernel.ubuntu.com/~kernel-ppa/mainline/
+#               ditampilkan versi stable saja.
+#
 
 # aksi_array+=("twit_kernel")
 

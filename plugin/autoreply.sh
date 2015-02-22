@@ -1,8 +1,16 @@
 #!/bin/bash
 #
-# Need package coreutils-paste + coreutils-sort (use --force-overwrite)
+# nama plugin : autoreply
+# deksripsi   : cek mention ke bot (gojibox) dan reply dengan $respon yang dipilih secara acak
+#               + cek mention merupakan command apa bukan (reply_command), kalau command
+#               maka proses selanjutnya akan dihandle script autoreply-command.sh
+# 
+# cara pakai  : twit_reply
+#               panggil via crontab tiap x menit
+#
+# keterangan  : kayaknya harus install paket coreutils-paste + coreutils-sort (use --force-overwrite)
 
-# aksi_array+=("twit_reply")
+# aksi_array+=("twit_reply") # panggil via crontab
 aksi_nolog="1"
 touch "temp/reply_replied"
 

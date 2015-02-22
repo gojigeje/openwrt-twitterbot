@@ -1,9 +1,9 @@
 #!/bin/bash
 # -------------------------------------------------------------------------
 
-# change directory to script's directory
-# cd /root/script/twit
-cd /home/goji/git/openwrt-twitterbot
+# cd to script's directory
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+cd "$DIR"
 
 setup() {
   hari=$(date +%u)

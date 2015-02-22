@@ -1,4 +1,14 @@
 #!/bin/bash
+#
+# nama plugin : 1cak
+# deksripsi   : plugin untuk mengambil dan memposting gambar meme dari 1cak.com
+# 
+# cara pakai  : twit_1cak "keyword"
+#
+#               bila keyword tidak diisi, akan posting meme random
+#               bila keyword diisi, akan mencari 6 meme dengan keyword tsb dan 
+#               memposting salah satu diantaranya
+#
 
 aksi_array+=("twit_1cak")
 

@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# nama plugin : target
+# deksripsi   : array yang berisi username target mention, digunakan oleh plugin
+#               ejek, greetings, dll
+#
+
 target_array=(
 "@afandie5"
 "@aftaonline"
@@ -40,5 +46,3 @@ target_array=(
 # "@ulinzulfa"
 # "@Zheezayn"
 )
-
-

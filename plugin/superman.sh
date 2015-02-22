@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+# nama plugin : superman
+# deksripsi   : twit link + gambar thumbnail video terbaru dari playlist youtube
+# 
+# cara pakai  : twit_superman
+#
+# keterangan  : dicontohkan playlist The Return of Superman
+#               https://www.youtube.com/playlist?list=PLMf7VY8La5RFIeOyIZ5IOm68WVb7c2dyT
+#
 
 # aksi_array+=("twit_superman")
 

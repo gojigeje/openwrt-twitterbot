@@ -1,9 +1,16 @@
 #!/bin/bash
+#
+# nama plugin : autoreply_command
+# deksripsi   : plugin tambahan untuk menentukan sebuah mention merupakan command atau bukan
+#               plugin ini dipanggil lewat script autoreply.sh
+#
 
+# TODO:
 # !stop
 # !gombalin
 # !ejekin
 
+# list username admin, pisahkan dengan spasi
 ngadimin="@gojigeje @gojibuntu"
 
 cekngadimin() {

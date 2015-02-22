@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# nama plugin : gombal
+# deksripsi   : godain cewek-cewek dengan menggombalinya :D
+#               gombalan dipilih acak, list target ada di script ini
+# 
+# cara pakai  : twit_gombal
+#
 
 aksi_array+=("twit_gombal")
 

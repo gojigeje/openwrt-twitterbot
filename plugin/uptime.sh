@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+# nama plugin : uptime
+# deksripsi   : twit uptime sistem
+# 
+# cara pakai  : twit_uptime
+#
+# keterangan  : selain ngetwit uptime, script juga nyatet data uptime sistem terpanjang
+#               buat pamer
+#
 
 aksi_array+=("twit_uptime")
 
