@@ -69,6 +69,7 @@ pilih_respon() {
       ":p"
       "^_^"
       "^o^"
+      "^.^"
     )
   emot_num=${#emot_array[*]}
   emot=${emot_array[$((RANDOM%emot_num))]}
@@ -145,12 +146,12 @@ twit_reply_main() {
       reply_command "$twit_isi"
 
       if [[ "$respon" == "1" ]]; then
-        if [[ "$dont" != "1" ]]; then
+        if [[ "$udahdibalas" != "1" ]]; then
           pilih_respon
           getJam
           responnya=$(echo "$respon" | sed 's/{target}/'$twit_user'/g')
           echo "[twit] : $responnya $emot"
-          twit -s "$responnya $emot"
+          twit -r "$twit_id" -s "$responnya $emot"
           # ttytter -status="$responnya $emot"
         fi
       fi

@@ -17,27 +17,37 @@ cekngadimin() {
   if [[ "$ngadimin" == *"$twit_user"* ]]; then
     # echo "$comm_user ada di list ngadimin"
     respon="0"
+    isngadimin="1"
   else
     # echo "$comm_user nggak ada di list ngadimin"
     respon="1"
+    isngadimin="0"    
   fi
 }
-
-bilang() {
-  # echo "[bilang]: $@"
-  twit -s "$@"
-  # ttytter -status="$@"
-}
-
 
 reply_command() {
 
   cekngadimin
-  dont="0"
+  udahdibalas="0"
   comm_user="$(echo "$@" | awk '{print $1}')"
   comm_tipe="$(echo "$@" | awk '{print $3}')"
   comm_tipeisi="$(echo "$@" | cut -d " " -f 3-)"
   comm_isi="$(echo "$@" | cut -d " " -f 4-)"
+
+  echo "comm_user    : $comm_user"
+  echo "comm_tipe    : $comm_tipe"
+  echo "comm_tipeisi : $comm_tipeisi"
+  echo "comm_isi     : $comm_isi"
+
+  # comm_user        : @gojibuntu
+  # comm_tipe        : !satu
+  # comm_tipeisi     : !satu dua tiga empat lima enam tujuh lapan sembilan 
+  # comm_isi         : dua tiga empat lima enam tujuh lapan sembilan
+
+
+  # ==================================================================================================================
+  #  filter commands
+  # ==================================================================================================================
 
   if [[ "$comm_tipe" == "!say" || "$comm_tipe" == "!bilang" ]]; then
     do_say
@@ -55,6 +65,7 @@ reply_command() {
     do_status
   fi
 
+
   # quick fix, ntar dibenahin lagi
   if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!bilang"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* && "$comm_tipeisi" != *"!status"* ]]; then
     respon="1"
@@ -62,51 +73,59 @@ reply_command() {
 
 }
 
+
+# ====================================================================================================================
+#  command functions
+# ====================================================================================================================
+
 do_say() {
-  if [[ "$respon" == "0" ]]; then
+  if [[ "$isngadimin" == "1" ]]; then
     echo "[twit] : $comm_user nyuruh kita bilang $comm_isi"
-    bilang "$comm_isi"
+    twit -s "$comm_isi"
   else
-    dont="1"
     # echo "[twit] : $comm_user nyuruh2 !say"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue gitu..??"
+    udahdibalas="1"
   fi
 }
 
 do_follow() {
-  if [[ "$respon" == "0" ]]; then
+  if [[ "$isngadimin" == "1" ]]; then
 
     array_who=( $comm_isi )
     for user in "${array_who[@]}"; do
       if [[ "$user" == @* ]]; then
         target=$(echo "$user" | sed 's/[^a-zA-Z0-9@_]//g')
         # echo "$comm_user nyruh kita follow $target"
-        ttytter -runcommand="/follow $target"
+        twit -f "$target"
       fi
     done
-    bilang "oke gan $comm_user, sudah difollow :)"
+    twit -r "$twit_id" -s "oke bos $comm_user, sudah ane follow barusan :)"
 
   else
-    dont="1"
     # echo "[twit] : $comm_user nyuruh2 !follow"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue follow.. elu aja gak follow gue gitu..! "
+    udahdibalas="1"
   fi
 }
 
 do_unfollow() {
-  if [[ "$respon" == "0" ]]; then
+  if [[ "$isngadimin" == "1" ]]; then
     
     array_who=( $comm_isi )
     for user in "${array_who[@]}"; do
       if [[ "$user" == @* ]]; then
         target=$(echo "$user" | sed 's/[^a-zA-Z0-9@_]//g')
         # echo "$comm_user nyruh kita unfollow $target"
-        ttytter -runcommand="/unfollow $target"
+        twit -l "$target"
       fi
     done
-    bilang "oke gan $comm_user, sudah diunfollow :)"
+    twit -r "$twit_id" -s "oke bos $comm_user, sudah ane unfollow barusan, kalau perlu ane blok tuh :)"
 
   else
-    dont="1"
-    echo "[twit] : $comm_user nyuruh2 !unfollow"
+    # echo "[twit] : $comm_user nyuruh2 !unfollow"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue gitu..??"
+    udahdibalas="1"
   fi
 }
 
@@ -114,24 +133,28 @@ do_status() {
   echo "[twit] : $comm_user nanyain status kita"
 
   statusnya_array=(
-      "merana karena jomblo"
-      "jomblo"
-      "di-PHP-in"
-      "bokek"
-      "jomblo abadi"
-      "ngejomblo"
-      "jomblo 3 bulan"
-      "galau akut"
-      "digantung"
-      "galau"
       "bokek akut"
+      "bokek"
+      "kena kanker (kantong kering)"
+      "di-PHP-in"
+      "galau kamu php in terus"
+      "digantung"
+      "galau akut"
+      "galau"
+      "jomblo 3 bulan"
+      "jomblo abadi"
+      "jomblo akut"
+      "jomblo"
       "menggalau"
+      "merana karena jomblo"
+      "ngejomblo"
       "susah BAB akhir2 ini"
+      "susah boker"
+      "mencret"
     )
   statusnya_num=${#statusnya_array[*]}
   statusnya=${statusnya_array[$((RANDOM%statusnya_num))]}
 
-  bilang "hai $comm_user, status aku saat ini itu lagi $statusnya kayak majikan aku si @gojigeje ..T_T"
+  twit -r "$twit_id" -s "hai $comm_user, status aku tuh saat ini lagi $statusnya kayak majikan aku si @gojigeje ..T_T"
   respon="0"
 }
-
