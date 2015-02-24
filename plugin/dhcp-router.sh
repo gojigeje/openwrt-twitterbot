@@ -75,16 +75,22 @@ twit_dhcp_main() {
       if [[ $host == "&nbsp;" ]]; then
         host="unknown?"
       fi
+      
       ip=$(echo "$line" | cut -d " " -f2)
       mac=$(echo "$line" | cut -d " " -f3)
       lease=$(echo "$line" | cut -d " " -f4)
       macs=$(echo "$mac" | sed 's/[A-Z0-9].$/XX/g')
 
+      # tabel dhcp kosong
+      if [[ $ip == "&nbsp;" ]]; then
+        break
+      fi
+
       if grep -q "$mac" "$dhcptoday" ; then
         echo "[dhcp] $mac udah ada di file today.."
       else
         echo "[dhcp] $mac belum ada ada di file today.."
-        status="[router-watch] New client connected! ~ $host ($ip / $macs / $lease) ~ total: $client client(s)"
+        status="[router-watch] New client connected! ~ $host ($ip / $macs / $lease) ~ total: $jumclient client(s)"
 
         echo "[dhcp] [twit] $status"
         twit -s "$status"
