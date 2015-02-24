@@ -11,14 +11,20 @@
 aksi_array+=("twit_adsl")
 
 adsltemp="temp/adsl.temp"
+num=1
 
-twit_adsl_main() {
+adsl_getpage() {
+  echo "[adsl] ambil data dari modem.. [$num]"
 
   # get status page
   curl -s http://USER:PASSWORD@192.168.1.1/status/status_deviceinfo.htm > "$adsltemp"
   sleep 2
   # once more, just to make sure
   curl -s http://USER:PASSWORD@192.168.1.1/status/status_deviceinfo.htm > "$adsltemp"
+}
+
+adsl_parsedata() {
+  echo "[adsl] parse data modem.."
 
   # parse data
   # http://stackoverflow.com/a/4203663
@@ -35,11 +41,36 @@ twit_adsl_main() {
   rate2=$(sed -n 49p "$adsltemp.data")
   max1=$(sed -n 51p "$adsltemp.data")
   max2=$(sed -n 52p "$adsltemp.data")
+}
 
-  tweet_status="[adsl-watch] $modulation $annex ~ SNR:$snr1/$snr2 ~ LineAttenuation:$att1/$att2 ~ DataRate:$rate1/$rate2 ~ MaxRate:$max1/$max2"
-  echo "[twit] $tweet_status"
+adsl_cek() {
+  echo "[adsl] periksa.."
+
+  if [[ $num -gt 2 ]]; then
+    echo "[adsl] giving up.. 3x gagal ambil data dari modem :("
+    exit
+  else
+    if [[ "$modulation" == "" || "$annex" == "" || "$snr1" == "" || "$snr2" == "" || "$att1" == "" || "$att2" == "" || "$rate1" == "" || "$rate2" == "" || "$max1" == "" || "$max2" == "" ]]; then
+      echo "[adsl] ada data yang kosong.. coba lagi"
+      let num++
+
+      adsl_getpage
+      adsl_parsedata
+      adsl_cek
+    fi
+  fi
+}
+
+twit_adsl_main() {
+
+  adsl_getpage
+  adsl_parsedata
+  adsl_cek
   
+  tweet_status="[adsl-watch] $modulation $annex ~ SNR:$snr1/$snr2 ~ LineAttenuation:$att1/$att2 ~ DataRate:$rate1/$rate2 ~ MaxRate:$max1/$max2"
+  echo -n "[adsl] "
+
   # cleanup
   rm temp/adsl.*
-  
+
 }
