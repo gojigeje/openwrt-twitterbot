@@ -70,7 +70,7 @@ A disabled plugin still can be executed by directly calling its name as main scr
 
 And that plugin will be executed despite being disabled. You can do this if you want to override the random selection process in main script or if you want to call a particular plugin.
 
-*Plugin yang didisable masih bisa dijalankan dengan memanggilnya nama plugin sebagai parameter script utama. Anda bisa menggunakan cara ini untuk memanggil plugin tertentu secara langsung / melewati proses seleksi acak.*
+*Plugin yang didisable masih bisa dijalankan dengan memanggilnya nama plugin sebagai parameter script utama. Anda bisa menggunakan cara ini untuk memanggil plugin tertentu secara langsung / melewati proses pemilihan acak.*
 
 ##Berkontribusi
 *Saya yakin masih banyak terdapat bug di project ini, selain hanya dicoba di router pribadi, dalam proses pembuatannya juga tidak terdokumentasi dengan baik. Silahkan fork, oprek dan kirim pull request. Laporkan bug atau eror di tab [issue](https://github.com/gojigeje/openwrt-twitterbot/issues).*
