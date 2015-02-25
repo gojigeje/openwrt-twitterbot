@@ -127,6 +127,7 @@ twit_conan_main() {
     else
       if [[ "$terbaru" == "$plugin_conan_last" ]]; then
         echo "- Episode udah paling baru [$terbaru].. dan udah di twit 2x.. gak ngetwit.."
+        exit 1
       fi
     fi
 
