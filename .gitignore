@@ -2,3 +2,4 @@ temp/
 testing/
 plugin.conf
 *.old
+*-dev.py
