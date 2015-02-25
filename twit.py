@@ -218,7 +218,7 @@ def get_trends(woeid):
 
     trending = result[0]["trends"]
     for tweet in trending:
-        print(tweet["name"]) 
+        print(tweet["name"].encode("utf-8")) 
 
 def main(argv):
     if not argv:
