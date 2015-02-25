@@ -171,3 +171,7 @@ Berikut adalah beberapa kode WOEID yang saya himpun per 2015/02/25 11:52 WIB
     23424870 = Kuwait                    23424984 = Vietnam
     23424874 = Latvia                
 
+##Berkontribusi
+*Saya yakin masih banyak terdapat bug di project ini, selain hanya dicoba di router pribadi, dalam proses pembuatannya juga tidak terdokumentasi dengan baik. Silahkan fork, oprek dan kirim pull request. Laporkan bug atau eror di tab [issue](https://github.com/gojigeje/openwrt-twitterbot/issues).*
+
+*Atau diskusikan dengan saya di twitter saya [@gojigeje](https://twitter.com/gojigeje), terima kasih :smile:*
