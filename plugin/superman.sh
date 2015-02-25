@@ -60,7 +60,7 @@ getinfo() {
       rm "temp/superman.videopage"
       exit
     else
-      if [[ ! -f "temp/superman.$line.jpg" ]]; then
+      if [[ ! -f "temp/superman.thumbnail.$line.jpg" ]]; then
         echo "> Error downloading thumbnail image..!"
         exit
       else
