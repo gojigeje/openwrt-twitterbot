@@ -11,9 +11,11 @@
 
 # aksi_array+=("twit_superman")
 
-playlist="https://www.youtube.com/playlist?list=PLMf7VY8La5RFIeOyIZ5IOm68WVb7c2dyT"
-linkFile="temp/superman.links"
-touch "temp/superman.vid.new" "temp/superman.vid.old"
+setup() {
+  playlist="https://www.youtube.com/playlist?list=PLMf7VY8La5RFIeOyIZ5IOm68WVb7c2dyT"
+  linkFile="temp/superman.links"
+  touch "temp/superman.vid.new" "temp/superman.vid.old"
+}
 
 getlinks() {
   echo "> Refreshing playlist.. ($playlist)"
@@ -113,6 +115,7 @@ updateplaylist() {
 # main function
 twit_superman_main() {
 
+  setup
   getlinks
   compare
   getinfo
