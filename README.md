@@ -42,7 +42,7 @@ The main script is ` tweet.sh `, basically what it does is to randomly select av
 
 *ruwet ya? :smile:*
 
-####How to run script?
+####How to run the script?
 By running the main script, try to run multiple time and it should display different output on each run (because the random selection of plugin)
 
     ./tweet.sh
