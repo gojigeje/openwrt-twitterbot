@@ -10,20 +10,19 @@
 
 # aksi_array+=("twit_dhcp")
 
-dhcptemp="temp/dhcp.table"
-dhcptoday="temp/dhcp.today.$tahun$bulan$tanggal"
-firsttime=false
-
-
-if [[ ! -f "$dhcptoday" ]]; then
-  echo "[dhcp] file dhcp.today ga ada, bikin, hapus yg kemarin"
-  rm temp/dhcp.today.* > /dev/null
-  touch "$dhcptoday"
-
-  firsttime=true
-fi
-
 twit_dhcp_main() {
+
+  dhcptemp="temp/dhcp.table"
+  dhcptoday="temp/dhcp.today.$tahun$bulan$tanggal"
+  firsttime=false
+
+  if [[ ! -f "$dhcptoday" ]]; then
+    echo "[dhcp] file dhcp.today ga ada, bikin, hapus yg kemarin"
+    rm temp/dhcp.today.* > /dev/null
+    touch "$dhcptoday"
+
+    firsttime=true
+  fi
 
   echo "[dhcp] [$jam:$menit]"
   # get dhcp table
@@ -75,7 +74,7 @@ twit_dhcp_main() {
       if [[ $host == "&nbsp;" ]]; then
         host="unknown?"
       fi
-      
+
       ip=$(echo "$line" | cut -d " " -f2)
       mac=$(echo "$line" | cut -d " " -f3)
       lease=$(echo "$line" | cut -d " " -f4)
