@@ -12,6 +12,7 @@ cd "$DIR"
 #rm temp/*_output
 
 setup() {
+  mkdir -p temp
   hari=$(date +%u)
   tanggal=$(date +%d)
   bulan=$(date +%m)
