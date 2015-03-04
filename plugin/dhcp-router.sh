@@ -98,7 +98,7 @@ twit_dhcp_main() {
         echo "[TD-W8951ND][TAG]" >> "$dhcptemp.twit"
         echo "" >> "$dhcptemp.twit"
         echo "New client connected!" >> "$dhcptemp.twit"
-        echo "$host ($ip / $macs / $lease)" >> "$dhcptemp.twit"
+        echo "$host, $macs, $ip" >> "$dhcptemp.twit"
         echo "total: $jumclient client(s)" >> "$dhcptemp.twit"
         
         cat "$dhcptemp.twit"

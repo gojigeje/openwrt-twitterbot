@@ -84,4 +84,5 @@ twit_adsl_main() {
   # cleanup
   rm temp/adsl.*
 
+  exit
 }
