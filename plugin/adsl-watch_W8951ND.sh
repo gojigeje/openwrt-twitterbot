@@ -13,7 +13,7 @@ aksi_array+=("twit_adsl2")
 adsltemp="temp/adsl.temp"
 num=1
 
-adsl_getpage() {
+adsl2_getpage() {
   echo "[adsl] ambil data dari modem.. [$num]"
 
   # get status page
@@ -23,7 +23,7 @@ adsl_getpage() {
   curl -s http://USER:PASSWORD@192.168.1.1/status/status_deviceinfo.htm > "$adsltemp"
 }
 
-adsl_parsedata() {
+adsl2_parsedata() {
   echo "[adsl] parse data modem.."
 
   # parse data
@@ -45,7 +45,7 @@ adsl_parsedata() {
   max2=$(sed -n 56p "$adsltemp.data")
 }
 
-adsl_cek() {
+adsl2_cek() {
   echo "[adsl] periksa.."
 
   if [[ $num -gt 2 ]]; then
@@ -56,18 +56,18 @@ adsl_cek() {
       echo "[adsl] ada data yang kosong.. coba lagi"
       let num++
 
-      adsl_getpage
-      adsl_parsedata
-      adsl_cek
+      adsl2_getpage
+      adsl2_parsedata
+      adsl2_cek
     fi
   fi
 }
 
 twit_adsl2_main() {
 
-  adsl_getpage
-  adsl_parsedata
-  adsl_cek
+  adsl2_getpage
+  adsl2_parsedata
+  adsl2_cek
   
   echo "[adsl-watch]" > "temp/adsl.2.twit"
   echo "[TD-W8951ND][MLG]" >> "temp/adsl.2.twit"
