@@ -42,9 +42,13 @@ twit_dhcp_main() {
   jumclient=$(cat "$dhcptemp.format" | wc -l)
 
   if $firsttime; then
-    status="[router-watch] start monitoring Router's DHCP Table (192.168.1.1) ~ currently $jumclient client(s) connected.."
-    echo "[dhcp] [twit] $status"
-    twit -s "$status"
+    echo "[router-watch]" > "$dhcptemp.twit"
+    echo "[TD-W8951ND][TAG]" >> "$dhcptemp.twit"
+    echo "" >> "$dhcptemp.twit"
+    echo "Start monitoring Router's DHCP Table (TD-W8951ND/192.168.1.1) ~ currently $jumclient client(s) connected.." >> "$dhcptemp.twit"
+
+    cat "$dhcptemp.twit"
+    twit -s "`cat $dhcptemp.twit`"
 
     # isi file today
     cat "$dhcptemp.format" > "$dhcptoday"
@@ -89,10 +93,16 @@ twit_dhcp_main() {
         echo "[dhcp] $mac udah ada di file today.."
       else
         echo "[dhcp] $mac belum ada ada di file today.."
-        status="[router-watch] New client connected! ~ $host ($ip / $macs / $lease) ~ total: $jumclient client(s)"
-
-        echo "[dhcp] [twit] $status"
-        twit -s "$status"
+        
+        echo "[router-watch]" > "$dhcptemp.twit"
+        echo "[TD-W8951ND][TAG]" >> "$dhcptemp.twit"
+        echo "" >> "$dhcptemp.twit"
+        echo "New client connected!" >> "$dhcptemp.twit"
+        echo "$host ($ip / $macs / $lease)" >> "$dhcptemp.twit"
+        echo "total: $jumclient client(s)" >> "$dhcptemp.twit"
+        
+        cat "$dhcptemp.twit"
+        twit -s "`cat $dhcptemp.twit`"
 
         # masukin line ke file today
         echo "$line" >> "$dhcptoday"

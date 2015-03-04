@@ -66,9 +66,20 @@ twit_adsl_main() {
   adsl_getpage
   adsl_parsedata
   adsl_cek
+
+  echo "[adsl-watch]" > "temp/adsl.twit"
+  echo "[TD-W8951ND][TAG]" >> "temp/adsl.twit"
+  echo "" >> "temp/adsl.twit"
+  echo "$modulation $annex" >> "temp/adsl.twit"
+  echo "SNR:$snr1/$snr2" >> "temp/adsl.twit"
+  echo "LineAtt:$att1/$att2" >> "temp/adsl.twit"
+  echo "DataRate:$rate1/$rate2" >> "temp/adsl.twit"
+  echo "MaxRate:$max1/$max2" >> "temp/adsl.twit"
+
+  cat "temp/adsl.twit"
   
-  tweet_status="[adsl-watch] $modulation $annex ~ SNR:$snr1/$snr2 ~ LineAttenuation:$att1/$att2 ~ DataRate:$rate1/$rate2 ~ MaxRate:$max1/$max2"
-  echo -n "[adsl] "
+  # tweet
+  twit -s "`cat temp/adsl.twit`"
 
   # cleanup
   rm temp/adsl.*
