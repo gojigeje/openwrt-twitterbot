@@ -5,14 +5,12 @@
 #               + cek mention merupakan command apa bukan (reply_command), kalau command
 #               maka proses selanjutnya akan dihandle script autoreply-command.sh
 # 
-# cara pakai  : twit_reply
+# cara pakai  : twit_autoreply
 #               panggil via crontab tiap x menit
 #
 # keterangan  : kayaknya harus install paket coreutils-paste + coreutils-sort (use --force-overwrite)
 
-# aksi_array+=("twit_reply") # panggil via crontab
-aksi_nolog="1"
-touch "temp/reply_replied"
+# aksi_array+=("twit_autoreply") # panggil via crontab
 
 pilih_respon() {
   respon_array=(
@@ -77,50 +75,18 @@ pilih_respon() {
 }
 
 # main method
-twit_reply_main() {
+twit_autoreply_main() {
+
+  aksi_nolog="1"
+  touch "temp/reply_replied"
+
+  # username bot, sesuaikan
+  botUsername="gojibox"
 
   getJam
-  echo "- [$getjam] curl halaman.."
-  curl --cacert "$certificate" -A "$ua" -s "https://twitter.com/search?f=realtime&q=%40gojibox&src=typd" > "temp/reply.html"
+  echo "[autoreply] [$getjam] search mention ke $botUsername.."
 
-  # echo "- ambil yang ngetwit.."
-  grep "username js-action-profile-name" "temp/reply.html" | sed "s/<[^>]\+>/ /g;s/[ \t]*//$g;s/ //g;s/&rlm;//g" > "temp/reply_username"
-
-  # echo "- ambil id twitnya.."
-  grep "data-tweet-id" "temp/reply.html" | cut -d '"' -f2 > "temp/reply_id"
-
-  # echo "- ambil isi twitnya.."
-  grep "js-tweet-text tweet-text" "temp/reply.html" | sed "s/<[^>]\+>/ /g;s/[ \t]*//$g;s/  //g;s/&rlm;//g" | perl -MHTML::Entities -le 'while(<>) {print decode_entities($_);}' | sed '/^[ \t]*$/d;s/@ gojibox/@gojibox /g' > "temp/reply_isi"
-
-  # echo "- sandingkan id + user + isi"
-  paste "temp/reply_id" "temp/reply_username" "temp/reply_isi" > "temp/reply_id_username_isi"
-  sed -i 's/[[:space:]]\+/ /g' "temp/reply_id_username_isi"
-
-  # echo "- filter !gojibox "
-  baris=$(cat "temp/reply_id_username_isi" | wc -l)
-  max=$(( $baris + 1 ))
-  num=1
-  > "temp/reply_id_username"
-
-  while [[ $num -lt $max ]]; do
-    line="`sed -n "$num"p "temp/reply_id_username_isi"`"
-
-    twit_user=$(echo "$line" | awk '{print $2}')
-    twit_isi=$(echo "$line" | cut -d " " -f 3-)
-
-    # cari yang bukan @gojibox
-    if [[ ! "$twit_user" == "@gojibox" ]]; then
-      echo "$line" >> "temp/reply_id_username"
-      # echo "-- user: $twit_user, isi: $twit_isi"
-    fi
-
-    let num++;
-  done
-
-  # echo "- sandingkan id + user + filter !gojibox + unik"
-  # paste "temp/reply_id" "temp/reply_username" | grep -v "gojibox" > "temp/reply_id_username"
-  # sed -i "s/\s\+/ /g" temp/reply_id_username
-  # echo "" >> temp/reply_id_username
+  twit --search="to:$botUsername" > "temp/reply_id_username"
 
   # echo -n "- twit per baris.. "
   baris=$(cat "temp/reply_id_username" | wc -l)
@@ -138,19 +104,19 @@ twit_reply_main() {
 
     # cek dulu di database replied
     if grep -q "$twit_id" "temp/reply_replied" ; then
-      echo "-- id $twit_id $twit_user udah ada di database replied, gak usah direply"
+      echo "[autoreply] id $twit_id $twit_user udah ada di database replied, gak usah direply"
     else
-      # echo "-- id $twit_id $twit_user belum ada di database replied, reply lalu masukin"
+      # echo "[autoreply] id $twit_id $twit_user belum ada di database replied, reply lalu masukin"
 
       # commands?
-      reply_command "$twit_isi"
+      autoreply_command "$twit_isi"
 
       if [[ "$respon" == "1" ]]; then
         if [[ "$udahdibalas" != "1" ]]; then
           pilih_respon
           getJam
           responnya=$(echo "$respon" | sed 's/{target}/'$twit_user'/g')
-          echo "[twit] : $responnya $emot"
+          echo "[autoreply] [twit] : $responnya $emot"
           twit -r "$twit_id" -s "$responnya $emot"
           # ttytter -status="$responnya $emot"
         fi
@@ -164,7 +130,7 @@ twit_reply_main() {
     let num++;
   done
 
-  echo "- done -"
+  echo "[autoreply] - done -"
   exit 1
 }
 

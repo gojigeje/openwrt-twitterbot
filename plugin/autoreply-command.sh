@@ -10,7 +10,7 @@
 # !gombalin
 # !ejekin
 
-# list username admin, pisahkan dengan spasi
+# list username admin, pisahkan dengan spasi, lengkap dengan @...
 ngadimin="@gojigeje @gojibuntu"
 
 cekngadimin() {
@@ -25,7 +25,7 @@ cekngadimin() {
   fi
 }
 
-reply_command() {
+autoreply_command() {
 
   cekngadimin
   udahdibalas="0"
@@ -34,10 +34,10 @@ reply_command() {
   comm_tipeisi="$(echo "$@" | cut -d " " -f 3-)"
   comm_isi="$(echo "$@" | cut -d " " -f 4-)"
 
-  echo "comm_user    : $comm_user"
-  echo "comm_tipe    : $comm_tipe"
-  echo "comm_tipeisi : $comm_tipeisi"
-  echo "comm_isi     : $comm_isi"
+  echo "[autoreply] - comm_user    : $comm_user"
+  echo "[autoreply] - comm_tipe    : $comm_tipe"
+  echo "[autoreply] - comm_tipeisi : $comm_tipeisi"
+  echo "[autoreply] - comm_isi     : $comm_isi"
 
   # comm_user        : @gojibuntu
   # comm_tipe        : !satu
@@ -65,7 +65,6 @@ reply_command() {
     do_status
   fi
 
-
   # quick fix, ntar dibenahin lagi
   if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!bilang"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* && "$comm_tipeisi" != *"!status"* ]]; then
     respon="1"
@@ -80,7 +79,7 @@ reply_command() {
 
 do_say() {
   if [[ "$isngadimin" == "1" ]]; then
-    echo "[twit] : $comm_user nyuruh kita bilang $comm_isi"
+    echo "[autoreply] [twit] : admin $comm_user nyuruh kita bilang $comm_isi"
     twit -s "$comm_isi"
   else
     # echo "[twit] : $comm_user nyuruh2 !say"
@@ -130,7 +129,7 @@ do_unfollow() {
 }
 
 do_status() {
-  echo "[twit] : $comm_user nanyain status kita"
+  echo "[autoreply] [twit] : admin $comm_user nanyain status kita"
 
   statusnya_array=(
       "bokek akut"
