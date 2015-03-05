@@ -10,10 +10,10 @@
 # !gombalin
 # !ejekin
 
-# list username admin, pisahkan dengan spasi, lengkap dengan @...
-ngadimin="@gojigeje @gojibuntu"
-
 cekngadimin() {
+  # list username admin, pisahkan dengan spasi, lengkap dengan @...
+  ngadimin="@gojigeje @gojibuntu"
+
   if [[ "$ngadimin" == *"$twit_user"* ]]; then
     # echo "$comm_user ada di list ngadimin"
     respon="0"
@@ -50,23 +50,24 @@ autoreply_command() {
   # ==================================================================================================================
 
   if [[ "$comm_tipe" == "!say" || "$comm_tipe" == "!bilang" ]]; then
-    do_say
-  fi
-
-  if [[ "$comm_tipe" == "!follow" ]]; then
-    do_follow
-  fi
-  
-  if [[ "$comm_tipe" == "!unfollow" || "$comm_tipe" == "!leave" ]]; then
-    do_unfollow
-  fi
-
-  if [[ "$comm_tipe" == "!status" ]]; then
-    do_status
-  fi
-
-  # quick fix, ntar dibenahin lagi
-  if [[ "$comm_tipeisi" != *"!say"* && "$comm_tipeisi" != *"!bilang"* && "$comm_tipeisi" != *"!follow"* && "$comm_tipeisi" != *"!unfollow"* && "$comm_tipeisi" != *"!leave"* && "$comm_tipeisi" != *"!status"* ]]; then
+    command_say
+  elif [[ "$comm_tipe" == "!follow" ]]; then
+    command_follow
+  elif [[ "$comm_tipe" == "!unfollow" || "$comm_tipe" == "!leave" ]]; then
+    command_unfollow
+  elif [[ "$comm_tipe" == "!status" ]]; then
+    command_status
+  elif [[ "$comm_tipe" == "!info" ]]; then
+    command_info
+  elif [[ "$comm_tipe" == "!ip" ]]; then
+    command_ipgue
+  elif [[ "$comm_tipe" == "!ping" ]]; then
+    command_ping
+  elif [[ "$comm_tipe" == "!pong" ]]; then
+    command_pong
+  elif [[ "$comm_tipe" == "!adsl" ]]; then
+    command_adsl
+  else
     respon="1"
   fi
 
@@ -77,7 +78,7 @@ autoreply_command() {
 #  command functions
 # ====================================================================================================================
 
-do_say() {
+command_say() {
   if [[ "$isngadimin" == "1" ]]; then
     echo "[autoreply] [twit] : admin $comm_user nyuruh kita bilang $comm_isi"
     twit -s "$comm_isi"
@@ -88,7 +89,7 @@ do_say() {
   fi
 }
 
-do_follow() {
+command_follow() {
   if [[ "$isngadimin" == "1" ]]; then
 
     array_who=( $comm_isi )
@@ -108,7 +109,7 @@ do_follow() {
   fi
 }
 
-do_unfollow() {
+command_unfollow() {
   if [[ "$isngadimin" == "1" ]]; then
     
     array_who=( $comm_isi )
@@ -128,7 +129,7 @@ do_unfollow() {
   fi
 }
 
-do_status() {
+command_status() {
   echo "[autoreply] [twit] : admin $comm_user nanyain status kita"
 
   statusnya_array=(
@@ -156,4 +157,90 @@ do_status() {
 
   twit -r "$twit_id" -s "hai $comm_user, status aku tuh saat ini lagi $statusnya kayak majikan aku si @gojigeje ..T_T"
   respon="0"
+}
+
+command_info() {
+  if [[ "$isngadimin" == "1" ]]; then
+    echo "[autoreply] [twit] : admin $comm_user minta info"
+    
+    uname -a > "temp/command.info.twit1"
+    up=$(uptime)
+    echo "Uptime: $up"  >> "temp/command.info.twit1"
+
+    free -mot | awk '
+    /Mem/{print "[RAM] Total: " $2 "Mb Used: " $3 "Mb Free: " $4 "Mb"}
+    /Swap/{print "[Swap] Total: " $2 "Mb Used: " $3 "Mb Free: " $4 "Mb"}' > "temp/command.info.twit2"
+
+    iplokal=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+    ippublic=$(curl -s http://ipgue.ml/text)
+
+    echo "IP Lokal  : $iplokal" > "temp/command.info.twit3"
+    echo "IP Public : $ippublic" >> "temp/command.info.twit3"
+
+    twit -r "$twit_id" -s "Siap bos $comm_user! System Info ane kirim via DM :)"
+
+    twit -u "$comm_user" -d "`cat temp/command.info.twit1`"
+    sleep 2
+    twit -u "$comm_user" -d "`cat temp/command.info.twit2`"
+    sleep 2
+    twit -u "$comm_user" -d "`cat temp/command.info.twit3`"
+    sleep 2
+
+    # cleanup
+    rm temp/command.info.*
+
+  else
+    # echo "[twit] : $comm_user nyuruh2 !say"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue gitu..??"
+    udahdibalas="1"
+  fi
+}
+
+command_ipgue() {
+  if [[ "$isngadimin" == "1" ]]; then
+    echo "[autoreply] [twit] : admin $comm_user minta info IP Publik"
+    
+    twit -r "$twit_id" -s "Siap bos $comm_user! Sedang mengambil IP Publik, habis ini ane DM bos.. :)"
+
+    getJam
+    ippublic=$(curl -s http://ipgue.ml/text)
+
+    twit -u "$comm_user" -d "[$getjam] IP Publik: $ippublic"
+
+  else
+    # echo "[twit] : $comm_user nyuruh2 !say"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue gitu..??"
+    udahdibalas="1"
+  fi
+}
+
+command_ping() {
+  echo "[autoreply] [twit] : !ping dari $comm_user"
+  twit -r "$twit_id" -s "$comm_user pong!"
+  respon="0"
+}
+
+command_pong() {
+  echo "[autoreply] [twit] : !pong dari $comm_user"
+  twit -r "$twit_id" -s "$comm_user pingpong!"
+  respon="0"
+}
+
+command_adsl() {
+  if [[ "$isngadimin" == "1" ]]; then
+    echo "[autoreply] [twit] : admin $comm_user minta info adsl"
+    
+    twit -r "$twit_id" -s "Siap bos $comm_user! Sedang mengambil info ADSL dari modem, habis ini ane twit.. :)"
+
+    # masukin twit id ke database, lakukan sekarang karena plugin adsl ada exit
+    echo "$twit_id" >> "temp/reply_replied" 
+
+    # memanggil plugin lain
+    twit_adsl_main 
+
+  else
+    # echo "[twit] : $comm_user nyuruh2 !say"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue gitu..??"
+    udahdibalas="1"
+  fi
 }
