@@ -10,9 +10,6 @@
 
 aksi_array+=("twit_adsl")
 
-adsltemp="temp/adsl.temp"
-num=1
-
 adsl_getpage() {
   echo "[adsl] ambil data dari modem.. [$num]"
 
@@ -62,6 +59,9 @@ adsl_cek() {
 }
 
 twit_adsl_main() {
+  
+  adsltemp="temp/adsl.temp"
+  num=1
 
   adsl_getpage
   adsl_parsedata
