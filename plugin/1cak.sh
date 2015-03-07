@@ -28,7 +28,7 @@ wancak_search () {
   echo "keyword     : $1"
   echo "urlsearch   : $urlsearch"
   # download halaman 1st
-  wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate"--header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlsearch" -qO "temp/1cak.search.tmp"
+  wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlsearch" -qO "temp/1cak.search.tmp"
   # extract url posting 1st
   cat "temp/1cak.search.tmp" | grep "title" | grep "cdn" | grep -o -E "href=[\"'](.*)[\"'] " | cut -d "'" -f2 | sed 's/\///' >> "temp/1cak.search.urls.tmp"
 
@@ -48,7 +48,7 @@ wancak_search () {
   echo "urlnext     : $urlsearch"
   # download halaman 2nd
   rm "temp/1cak.search.tmp"
-  wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate"--header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlsearch" -qO "temp/1cak.search.tmp"
+  wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlsearch" -qO "temp/1cak.search.tmp"
   # extract url posting 2nd
   cat "temp/1cak.search.tmp" | grep "title" | grep "cdn" | grep -o -E "href=[\"'](.*)[\"'] " | cut -d "'" -f2 | sed 's/\///' >> "temp/1cak.search.urls.tmp"
 
@@ -58,7 +58,7 @@ wancak_search () {
   # echo "urlnext   : $urlsearch"
   # # download halaman 3rd
   # rm "temp/1cak.search.tmp"
-  # wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate"--header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlsearch" -qO "temp/1cak.search.tmp"
+  # wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlsearch" -qO "temp/1cak.search.tmp"
   # # extract url posting 3rd
   # cat "temp/1cak.search.tmp" | grep "title" | grep "cdn" | grep -o -E "href=[\"'](.*)[\"'] " | cut -d "'" -f2 | sed 's/\///' >> "temp/1cak.search.urls.tmp"
 
@@ -75,7 +75,7 @@ wancak_tweet() { # params: urlproksi
   echo "urlproksi   : $urlproksi"
 
   # download halaman
-  wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate"--header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlproksi" -qO "temp/1cak.tmp"
+  wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$urlproksi" -qO "temp/1cak.tmp"
 
   # extract gambar, cek unsafe
   # http://stackoverflow.com/questions/20152170
@@ -101,7 +101,7 @@ wancak_tweet() { # params: urlproksi
     curl -s "$imgurlproksi" -o "temp/1cak.$imgname.jpg"
 
     # curl --referer "http://www.google.com" -A "$ua" -H "Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" -H "Accept-Language: en-us,en;q=0.5" -H "Accept-Encoding: gzip,deflate" -H "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" -H "Keep-Alive: 300" "$imgurl" -o "temp/1cak.$imgname.jpg"
-    # wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Encoding: gzip,deflate"--header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$imgurl" -qO "temp/1cak.$imgname.jpg"
+    # wget --referer="http://www.google.com" --user-agent="$ua" --header="Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" --header="Accept-Language: en-us,en;q=0.5" --header="Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7" --header="Keep-Alive: 300" --no-cache "$imgurl" -qO "temp/1cak.$imgname.jpg"
 
     echo "[twit]      : posting.."
     # tweet
