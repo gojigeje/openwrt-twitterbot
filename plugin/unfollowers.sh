@@ -5,8 +5,6 @@
 # 
 # cara pakai  : twit_unfollowers
 #
-# keterangan  : nothing special
-#
 
 aksi_array+=("twit_unfollowers")
 

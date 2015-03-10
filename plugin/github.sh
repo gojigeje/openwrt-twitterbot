@@ -8,13 +8,13 @@
 # keterangan  : kayaknya harus install dulu paket coreutils-paste + coreutils-sort (use --force-overwrite)
 
 # aksi_array+=("twit_github")
-aksi_nolog="1"
-
-touch "temp/github_posted"
 
 # main method
 twit_github_main() {
 
+  aksi_nolog="1"
+  touch "temp/github_posted"
+  
   getJam
   echo "- [$getjam] curl feed.."
   curl --cacert "$certificate" -A "$ua" -s "https://github.com/gojigeje.atom" > "temp/github.xml"
