@@ -67,6 +67,8 @@ autoreply_command() {
     command_pong
   elif [[ "$comm_tipe" == "!adsl" ]]; then
     command_adsl
+  elif [[ "$comm_tipe" == "!kissanime" ]]; then
+    command_kissanime
   else
     respon="1"
   fi
@@ -80,7 +82,7 @@ autoreply_command() {
 
 command_say() {
   if [[ "$isngadimin" == "1" ]]; then
-    echo "[autoreply] [twit] : admin $comm_user nyuruh kita bilang $comm_isi"
+    echo "[autoreply] admin $comm_user nyuruh kita bilang $comm_isi"
     twit -s "$comm_isi"
   else
     # echo "[twit] : $comm_user nyuruh2 !say"
@@ -130,7 +132,7 @@ command_unfollow() {
 }
 
 command_status() {
-  echo "[autoreply] [twit] : admin $comm_user nanyain status kita"
+  echo "[autoreply] admin $comm_user nanyain status kita"
 
   statusnya_array=(
       "bokek akut"
@@ -161,7 +163,7 @@ command_status() {
 
 command_info() {
   if [[ "$isngadimin" == "1" ]]; then
-    echo "[autoreply] [twit] : admin $comm_user minta info"
+    echo "[autoreply] admin $comm_user minta info"
     
     uname -a > "temp/command.info.twit1"
     up=$(uptime)
@@ -198,7 +200,7 @@ command_info() {
 
 command_ipgue() {
   if [[ "$isngadimin" == "1" ]]; then
-    echo "[autoreply] [twit] : admin $comm_user minta info IP Publik"
+    echo "[autoreply] admin $comm_user minta info IP Publik"
     
     twit -r "$twit_id" -s "Siap bos $comm_user! Sedang mengambil IP Publik, habis ini ane DM bos.. :)"
 
@@ -228,15 +230,30 @@ command_pong() {
 
 command_adsl() {
   if [[ "$isngadimin" == "1" ]]; then
-    echo "[autoreply] [twit] : admin $comm_user minta info adsl"
+    echo "[autoreply] admin $comm_user minta info adsl"
     
     twit -r "$twit_id" -s "Siap bos $comm_user! Sedang mengambil info ADSL dari modem, habis ini ane twit.. :)"
 
     # masukin twit id ke database, lakukan sekarang karena plugin adsl ada exit
-    echo "$twit_id" >> "temp/reply_replied" 
+    echo "$twit_id $comm_user" >> "temp/reply_replied" 
 
     # memanggil plugin lain
     twit_adsl_main 
+
+  else
+    # echo "[twit] : $comm_user nyuruh2 !say"
+    twit -r "$twit_id" -s "oi oi.. $comm_user emangnya elu siapa nyruh2 gue gitu..??"
+    udahdibalas="1"
+  fi
+}
+
+command_kissanime() {
+  if [[ "$isngadimin" == "1" ]]; then
+    echo "[autoreply] admin $comm_user nyuruh liat kissanime"
+    twit -r "$twit_id" -s "Siap bos $comm_user! Sedang mengambil info $comm_isi dari kissanime, habis ini ane twit.. :)"
+
+    echo "$twit_id $comm_user" >> "temp/reply_replied"
+    kissanime "$comm_isi"
 
   else
     # echo "[twit] : $comm_user nyuruh2 !say"

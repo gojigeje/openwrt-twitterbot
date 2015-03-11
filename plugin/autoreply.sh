@@ -122,7 +122,7 @@ twit_autoreply_main() {
         fi
       fi
       # masukin twit_id ke database
-      echo "$twit_id" >> "temp/reply_replied"
+      echo "$twit_id $twit_user" >> "temp/reply_replied"
 
       sleep 3
     fi
