@@ -1,5 +1,12 @@
 #!/bin/bash
 #
+# nama plugin : autoreply-kissanime
+# deksripsi   : plugin tambahan untuk autoreply-command, ambil info anime dari kissanime.com
+#               
+# cara pakai  : mention ke bot dg format:
+#                 !kissanime [URL Anime di kissanime.com], misal
+#                 !kissanime http://kissanime.com/Anime/Detective-Conan/
+#
 
 kissanime() {
   # link t.co
