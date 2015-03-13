@@ -64,7 +64,7 @@ twit_adsl_dweet_cek() {
 
 twit_adsl_dweet_main() {
 
-  adsltemp="temp/adsl.sparkfun.temp"
+  adsltemp="temp/adsl.dweet.temp"
   num=1
   
   twit_adsl_dweet_getpage
@@ -84,7 +84,7 @@ twit_adsl_dweet_main() {
   echo ""
 
   # cleanup
-  rm temp/adsl.sparkfun.*
+  rm temp/adsl.dweet.*
 
   exit
 }
