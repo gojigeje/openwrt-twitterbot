@@ -42,13 +42,13 @@ kissanime_curlpage() {
   jumlLink=$(awk '/<table\>/{a=1;next}/<\/table\>/{a=0}a' "temp/kissanime.temp" | grep "<a *.href=" | wc -l)
   status=$(cat "temp/kissanime.temp" | grep "Status:" | cut -d ";" -f2 | sed 's|<[^>]*>||g')
   lastEps=$(awk '/<table\>/{a=1;next}/<\/table\>/{a=0}a' "temp/kissanime.temp" | grep "<a href=" | head -n1 | grep -o -E "title=[\"'](.*)[\"']" | cut -d "\"" -f2 | sed 's/.*Episode //g;s/[^0-9]//g;s/^0*//')
-  thumbnail=$(cat "temp/kissanime.temp" | grep image_src | grep -o -E "href=[\"'](.*)[\"']" | cut -d "\"" -f2 | sed -s 's/^/http:\/\/proksi.ml/g')
+  thumbnail=$(cat "temp/kissanime.temp" | grep image_src | grep -o -E "href=[\"'](.*)[\"']" | cut -d "\"" -f2 | sed 's/^/http:\/\/proksi.ml/g')
 
-  # echo "judulAnime: $judulAnime"
-  # echo "jumlLink: $jumlLink"
-  # echo "status: $status"
-  # echo "lastEps: $lastEps"
-  # echo "thumbnail: $thumbnail"
+  echo "[autoreply] [kissanime] judulAnime: $judulAnime"
+  echo "[autoreply] [kissanime] jumlLink: $jumlLink"
+  echo "[autoreply] [kissanime] status: $status"
+  echo "[autoreply] [kissanime] lastEps: $lastEps"
+  echo "[autoreply] [kissanime] thumbnail: $thumbnail"
 
   echo "[kissanime] cc $comm_user" > "temp/kissanime.twit"
   echo "$judulAnime" >> "temp/kissanime.twit"
@@ -75,8 +75,24 @@ kissanime_curlpage() {
     # cleanup
     rm temp/kissanime.*
   else
+    # gagal download image, post text aja
     echo "gagal"
-    echo "[autoreply] [kissanime] exit :("
+    echo "[autoreply] [kissanime] post text aja :("
+
+    if [[ "$judulAnime" == "" || "$jumlLink" == "" || "$status" == "" || "$lastEps" == "" || "$thumbnail" == "" ]]; then
+      echo "[autoreply] [kissanime] ada data yang kosong.. exit :("
+      
+      twit -r "$twit_id" -s "Maap bos $comm_user, kyaknya ada data yg kelewat deh pas ane cari info $tco tadi, duh.. coba lagi ya bos :("
+      exit
+    fi
+
+    echo "[autoreply] [twit]"
+    
+    echo "$tco" >> "temp/kissanime.twit"
+    twit -s "`cat temp/kissanime.twit`"
+
+    # cleanup
+    rm temp/kissanime.*
     exit
   fi
 
